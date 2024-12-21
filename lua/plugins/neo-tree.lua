@@ -8,10 +8,11 @@ return {
   event = 'VeryLazy',
   keys = {
     { '<leader>e', ':Neotree toggle float<CR>', silent = true, desc = 'Float File Explorer' },
-    -- { "<leader><Tab>", ":Neotree toggle left<CR>", silent = true, desc = "Left File Explorer" },
+    { '<leader><Tab>', ':Neotree toggle left<CR>', silent = true, desc = 'Left File Explorer' },
     -- { '<leader><Tab>', ':Neotree toggle float<CR>', silent = true, desc = 'Float File Explorer' },
-    { '<leader>nc', ':Neotree $LOCALAPPDATA/nvim<CR>', silent = true, { desc = 'Open Neovim config in Neo-tree' } },
+    { '<leader>nv', ':Neotree $LOCALAPPDATA/nvim<CR>', silent = true, { desc = 'Open Neovim config in Neo-tree' } },
     { '<leader>nb', ':Neotree ~/brain<CR>', desc = 'Open brain directory in Neo-tree', silent = true },
+    { '<leader>nc', ':Neotree ~/code<CR>', desc = 'Open code directory in Neo-tree', silent = true },
   },
   config = function()
     require('neo-tree').setup {
