@@ -22,3 +22,11 @@ api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', command 
 
 -- resize neovim split when terminal is resized
 vim.api.nvim_command 'autocmd VimResized * wincmd ='
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
