@@ -57,6 +57,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
       defaults = {
         file_ignore_patterns = {
           'node_modules',
+          '.next',
+          '.git',
         },
       },
       extensions = {
