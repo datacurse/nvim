@@ -37,8 +37,17 @@ return {
       },
     }
 
-    -- Example of attaching to an LSP server
-    require('lspconfig').clangd.setup {
+    -- TypeScript setup (using tsserver)
+    require('lspconfig').ts_ls.setup {
+      on_attach = function(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          navic.attach(client, bufnr)
+        end
+      end,
+    }
+
+    -- Elm setup
+    require('lspconfig').elmls.setup {
       on_attach = function(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
           navic.attach(client, bufnr)
