@@ -35,15 +35,17 @@ vim.api.nvim_create_autocmd('TermOpen', {
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua' },
   callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true -- Convert tabs to spaces
+    vim.opt_local.tabstop = 2 -- How many columns a tab counts for
+    vim.opt_local.shiftwidth = 2 -- Size of an indent
+    vim.opt_local.softtabstop = 2 -- How many columns when you press Tab
   end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'python', 'rust', 'go' },
   callback = function()
+    vim.opt_local.expandtab = true
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
     vim.opt_local.softtabstop = 4
