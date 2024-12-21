@@ -48,10 +48,10 @@ vim.keymap.set('n', '<M-Left>', ':bprevious<CR>', opts) -- Previous buffer
 
 -- Window resizing controls
 vim.keymap.set('n', '+', ':vertical resize +5<CR>') -- Increase window width
-vim.keymap.set('n', '_', ':vertical resize -5<CR>') -- Decrease window width
+vim.keymap.set('n', '-', ':vertical resize -5<CR>') -- Decrease window width
 -- TODO assign better symbols
-vim.keymap.set('n', '=', ':resize +5<CR>') -- Increase window height
-vim.keymap.set('n', '-', ':resize -5<CR>') -- Decrease window height
+-- vim.keymap.set('n', '=', ':resize +5<CR>') -- Increase window height
+-- vim.keymap.set('n', '-', ':resize -5<CR>') -- Decrease window height
 
 -- Telescope integration
 -- vim.keymap.set("n", ";", "<cmd>Telescope resume<cr>", opts)  -- Resume last telescope search
