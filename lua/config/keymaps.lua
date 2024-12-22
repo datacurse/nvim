@@ -124,3 +124,5 @@ vim.keymap.set('n', '<space>st', function()
   vim.cmd.wincmd 'J'
   vim.api.nvim_win_set_height(0, 5)
 end)
+
+vim.keymap.set('n', 'ciw', '"_ciw', { noremap = true })
