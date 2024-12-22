@@ -37,11 +37,11 @@ return {
       },
     }
 
-    -- TypeScript setup (using tsserver)
-    require('lspconfig').ts_ls.setup {
+    -- In lua/plugins/nvim-navic.lua, update the TypeScript setup to:
+    require('typescript-tools').setup {
       on_attach = function(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
-          navic.attach(client, bufnr)
+          require('nvim-navic').attach(client, bufnr)
         end
       end,
     }
