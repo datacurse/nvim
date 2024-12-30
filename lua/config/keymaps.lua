@@ -126,3 +126,7 @@ vim.keymap.set('n', '<space>st', function()
 end)
 
 vim.keymap.set('n', 'ciw', '"_ciw', { noremap = true })
+
+vim.keymap.set('n', '<leader>rn', function()
+  return ':IncRename ' .. vim.fn.expand '<cword>'
+end, { expr = true })
