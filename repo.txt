@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- Configure indentation for specific filetypes
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua' },
+  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua', 'elm' },
   callback = function()
     vim.opt_local.expandtab = true -- Convert tabs to spaces
     vim.opt_local.tabstop = 2 -- How many columns a tab counts for
@@ -59,6 +59,14 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
     vim.opt_local.softtabstop = 4
+  end,
+})
+
+-- Auto-format Elm files on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.elm',
+  callback = function()
+    vim.cmd 'silent! !elm-format --yes %' -- formats the current file
   end,
 })
 
@@ -193,6 +201,17 @@ vim.keymap.set('n', '<space>st', function()
 end)
 
 vim.keymap.set('n', 'ciw', '"_ciw', { noremap = true })
+
+vim.keymap.set('n', '<leader>rn', function()
+  return ':IncRename ' .. vim.fn.expand '<cword>'
+end, { expr = true })
+
+vim.keymap.set('n', '<leader>dd', function()
+  vim.diagnostic.open_float {
+    header = '',
+    prefix = '', -- Remove prefix from diagnostic messages
+  }
+end, { desc = 'Open diagnostic float' })
 
 [End: lua\config\keymaps.lua]
 
@@ -950,6 +969,14 @@ return {
 
 [End: lua\plugins\image_preview.lua]
 
+[File: lua\plugins\inc-rename.lua]
+return {
+  'smjonas/inc-rename.nvim',
+  config = true,
+}
+
+[End: lua\plugins\inc-rename.lua]
+
 [File: lua\plugins\lazy-dev.lua]
 return {
   -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -965,6 +992,31 @@ return {
 }
 
 [End: lua\plugins\lazy-dev.lua]
+
+[File: lua\plugins\lazygit.lua]
+-- nvim v0.8.0
+return {
+  'kdheepak/lazygit.nvim',
+  lazy = true,
+  cmd = {
+    'LazyGit',
+    'LazyGitConfig',
+    'LazyGitCurrentFile',
+    'LazyGitFilter',
+    'LazyGitFilterCurrentFile',
+  },
+  -- optional for floating window border decoration
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+  },
+  -- setting the keybinding for LazyGit with 'keys' is recommended in
+  -- order to load the plugin when the command is run for the first time
+  keys = {
+    { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+  },
+}
+
+[End: lua\plugins\lazygit.lua]
 
 [File: lua\plugins\lsp.lua]
 return {
@@ -1133,7 +1185,18 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      -- pyright = {},
+      pyright = {
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = 'basic',
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      },
+      -- ruff_lsp = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -1173,6 +1236,8 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
+      'black', -- Python formatter
+      'ruff', -- Fast Python linter
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1324,7 +1389,6 @@ return {
         sources = {
           { source = 'filesystem', display_name = '   Files ' },
           { source = 'buffers', display_name = '   Bufs ' },
-          { source = 'git_status', display_name = '   Git ' },
         },
       },
       event_handlers = {
@@ -1510,11 +1574,11 @@ return {
       },
     }
 
-    -- TypeScript setup (using tsserver)
-    require('lspconfig').ts_ls.setup {
+    -- In lua/plugins/nvim-navic.lua, update the TypeScript setup to:
+    require('typescript-tools').setup {
       on_attach = function(client, bufnr)
         if client.server_capabilities.documentSymbolProvider then
-          navic.attach(client, bufnr)
+          require('nvim-navic').attach(client, bufnr)
         end
       end,
     }
@@ -1577,6 +1641,27 @@ return { -- Highlight, edit, and navigate code
 
 [End: lua\plugins\nvim-treesitter.lua]
 
+[File: lua\plugins\nvim-ts-autotag.lua]
+return {
+  'windwp/nvim-ts-autotag',
+  dependencies = 'nvim-treesitter/nvim-treesitter',
+  config = function()
+    require('nvim-ts-autotag').setup {
+      -- Default configuration
+      opts = {
+        enable_close = true,
+        enable_rename = true,
+        enable_close_on_slash = false,
+      },
+    }
+  end,
+  -- While lazy-loading isn't strictly necessary according to the docs,
+  -- if you want to lazy load, you can use these events:
+  event = { 'BufReadPre', 'BufNewFile' },
+}
+
+[End: lua\plugins\nvim-ts-autotag.lua]
+
 [File: lua\plugins\persistance.lua]
 return {
   'folke/persistence.nvim',
@@ -1587,37 +1672,6 @@ return {
 }
 
 [End: lua\plugins\persistance.lua]
-
-[File: lua\plugins\tailwind-tools.lua]
-return {
-  'luckasRanarison/tailwind-tools.nvim',
-  name = 'tailwind-tools',
-  build = ':UpdateRemotePlugins',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-telescope/telescope.nvim', -- optional
-    'neovim/nvim-lspconfig', -- optional
-  },
-
-  opts = function()
-    local patterns = {
-      'clsx%(([^)]+)%)',
-    }
-
-    return {
-      extension = {
-        patterns = {
-          typescript = patterns,
-          javascript = patterns,
-          typescriptreact = patterns,
-          javascriptreact = patterns,
-        },
-      },
-    }
-  end,
-}
-
-[End: lua\plugins\tailwind-tools.lua]
 
 [File: lua\plugins\telescope.lua]
 return { -- Fuzzy Finder (files, lsp, etc)
@@ -1750,56 +1804,21 @@ return {
 [End: lua\plugins\typescript-tools.lua]
 
 [File: lua\plugins\which-key.lua]
-return { -- Useful plugin to show you pending keybinds.
+return {
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  event = 'VeryLazy',
   opts = {
-    icons = {
-      -- set icon mappings to true if you have a Nerd Font
-      mappings = vim.g.have_nerd_font,
-      -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-      -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
-      keys = vim.g.have_nerd_font and {} or {
-        Up = '<Up> ',
-        Down = '<Down> ',
-        Left = '<Left> ',
-        Right = '<Right> ',
-        C = '<C-…> ',
-        M = '<M-…> ',
-        D = '<D-…> ',
-        S = '<S-…> ',
-        CR = '<CR> ',
-        Esc = '<Esc> ',
-        ScrollWheelDown = '<ScrollWheelDown> ',
-        ScrollWheelUp = '<ScrollWheelUp> ',
-        NL = '<NL> ',
-        BS = '<BS> ',
-        Space = '<Space> ',
-        Tab = '<Tab> ',
-        F1 = '<F1>',
-        F2 = '<F2>',
-        F3 = '<F3>',
-        F4 = '<F4>',
-        F5 = '<F5>',
-        F6 = '<F6>',
-        F7 = '<F7>',
-        F8 = '<F8>',
-        F9 = '<F9>',
-        F10 = '<F10>',
-        F11 = '<F11>',
-        F12 = '<F12>',
-      },
-    },
-
-    -- Document existing key chains
-    spec = {
-      { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-      { '<leader>d', group = '[D]ocument' },
-      { '<leader>r', group = '[R]ename' },
-      { '<leader>s', group = '[S]earch' },
-      { '<leader>w', group = '[W]orkspace' },
-      { '<leader>t', group = '[T]oggle' },
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  },
+  keys = {
+    {
+      '<leader>?',
+      function()
+        require('which-key').show { global = false }
+      end,
+      desc = 'Buffer Local Keymaps (which-key)',
     },
   },
 }

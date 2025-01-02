@@ -1,5 +1,6 @@
 -- Set default options for key mappings
 local opts = { noremap = true, silent = true }
+vim.notify('Loading keymaps...', vim.log.levels.INFO)
 
 -- Go to definition
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts) -- Jump to definition
@@ -130,3 +131,10 @@ vim.keymap.set('n', 'ciw', '"_ciw', { noremap = true })
 vim.keymap.set('n', '<leader>rn', function()
   return ':IncRename ' .. vim.fn.expand '<cword>'
 end, { expr = true })
+
+vim.keymap.set('n', '<leader>dd', function()
+  vim.diagnostic.open_float {
+    header = '',
+    prefix = '', -- Remove prefix from diagnostic messages
+  }
+end, { desc = 'Open diagnostic float' })

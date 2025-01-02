@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- Configure indentation for specific filetypes
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua' },
+  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua', 'elm' },
   callback = function()
     vim.opt_local.expandtab = true -- Convert tabs to spaces
     vim.opt_local.tabstop = 2 -- How many columns a tab counts for
@@ -49,5 +49,13 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
     vim.opt_local.softtabstop = 4
+  end,
+})
+
+-- Auto-format Elm files on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.elm',
+  callback = function()
+    vim.cmd 'silent! !elm-format --yes %' -- formats the current file
   end,
 })
