@@ -1,17 +1,14 @@
 -- Set default options for key mappings
 local opts = { noremap = true, silent = true }
-vim.notify('Loading keymaps...', vim.log.levels.INFO)
 
 -- Go to definition
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts) -- Jump to definition
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts) -- Show references
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts) -- Go to implementation
-vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts) -- Go to type definition
 
 -- Go back/forward in jump list
-vim.keymap.set('n', '<C-o>', '<C-o>', opts) -- Jump back
-vim.keymap.set('n', '<C-i>', '<C-i>', opts) -- Jump forward
+vim.keymap.set('n', '<C-o>', '<C-o>', opts) -- Jump back, out
+vim.keymap.set('n', '<C-i>', '<C-i>', opts) -- Jump forward, in
 
 -- LSP hover documentation
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
