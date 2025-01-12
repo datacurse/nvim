@@ -59,3 +59,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.cmd 'silent! !elm-format --yes %' -- formats the current file
   end,
 })
+
+-- vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+--   pattern = { '*.mdx' },
+--   callback = function()
+--     -- some folks use "markdown.mdx", others "mdx"—adjust as you like
+--     vim.bo.filetype = 'markdown.mdx'
+--   end,
+-- })
