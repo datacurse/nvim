@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- Configure indentation for specific filetypes
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua', 'elm' },
+  pattern = { 'mdx', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'tsx', 'jsx', 'json', 'yaml', 'html', 'css', 'scss', 'lua', 'elm' },
   callback = function()
     vim.opt_local.expandtab = true -- Convert tabs to spaces
     vim.opt_local.tabstop = 2 -- How many columns a tab counts for
