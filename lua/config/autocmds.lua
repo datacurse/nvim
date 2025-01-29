@@ -67,3 +67,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 --     vim.bo.filetype = 'markdown.mdx'
 --   end,
 -- })
+
+vim.api.nvim_create_autocmd('SwapExists', {
+  pattern = '*',
+  callback = function()
+    vim.v.swapchoice = 'e' -- Automatically select "Edit Anyway"
+  end,
+})
