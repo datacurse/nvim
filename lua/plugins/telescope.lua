@@ -1,24 +1,17 @@
-return { -- Fuzzy Finder (files, lsp, etc)
+return {
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    { -- If encountering errors, see telescope-fzf-native README for installation instructions
+    {
       'nvim-telescope/telescope-fzf-native.nvim',
-
-      -- `build` is used to run some command when the plugin is installed/updated.
-      -- This is only run then, not every time Neovim starts up.
       build = 'make',
-
-      -- `cond` is a condition used to determine whether this plugin should be
-      -- installed and loaded.
       cond = function()
         return vim.fn.executable 'make' == 1
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
-
     -- Useful for getting pretty icons, but requires a Nerd Font.
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
@@ -71,6 +64,81 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
+
+    -- Customize icons for different file types
+    local colors = {
+      blue = '#519aba',
+      yellow = '#cbcb41',
+      purple = '#a074c4',
+      red = '#e8274b',
+      orange = '#e37933',
+      green = '#8dc149',
+      cyan = '#56b6c2',
+      gray = '#41535b',
+    }
+    require('nvim-web-devicons').set_icon {
+      ts = {
+        icon = '', -- VS Code uses this TS icon (adjust if necessary)
+        color = colors.blue, -- Blueish from VS Code
+        name = 'TypeScript',
+      },
+      tsx = {
+        icon = '', -- TSX icon
+        color = colors.blue, -- VS Code TSX color (slightly different)
+        name = 'TypeScriptReact',
+      },
+      js = {
+        icon = '',
+        color = colors.yellow,
+        name = 'JavaScript',
+      },
+      json = {
+        icon = '',
+        color = colors.yellow,
+        name = 'Json',
+      },
+      css = {
+        icon = '',
+        color = colors.blue,
+        name = 'CSS',
+      },
+      html = {
+        icon = '',
+        color = colors.orange,
+        name = 'HTML',
+      },
+      svg = {
+        icon = '',
+        color = colors.purple,
+        name = 'SVG',
+      },
+      png = {
+        icon = '',
+        color = colors.purple,
+        name = 'PNG',
+      },
+      python = {
+        icon = '', -- VS Code uses this TS icon (adjust if necessary)
+        color = colors.blue, -- Blueish from VS Code
+        name = 'Python',
+      },
+      markdown = {
+        icon = '',
+        color = colors.blue,
+        name = 'Markdown',
+      },
+      gitignore = {
+        icon = '',
+        color = colors.gray,
+        cterm_color = '196',
+        name = 'GitIgnore',
+      },
+      yaml = {
+        icon = '!',
+        color = colors.purple,
+        name = 'Yaml',
+      },
+    }
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
