@@ -1,4 +1,3 @@
--- Set default options for key mappings
 local opts = { noremap = true, silent = true }
 
 -- Go to definition
@@ -21,9 +20,11 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', opts) -- Scroll up half a page and cente
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", opts) -- Move selected block down
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts) -- Move selected block up
 
--- Commented out quick save/quit mappings
+-- Quick save/quit mappings
 -- vim.keymap.set('n', '<leader>w', ':write!<CR>', { silent = true, desc = 'Save file' })
 -- vim.keymap.set('n', '<leader>q', ':q!<CR>', opts)
+vim.keymap.set('n', '<C-s>', ':write<CR>', { silent = true, desc = 'Save file' })
+vim.keymap.set('i', '<C-s>', '<Esc>:write<CR>a', { silent = true, desc = 'Save file' }) -- Also works in insert mode
 
 -- Better handling of wrapped lines
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true }) -- Move up respecting visual lines
@@ -47,13 +48,13 @@ vim.keymap.set('n', '<M-Left>', ':bprevious<CR>', opts) -- Previous buffer
 -- Window resizing controls
 vim.keymap.set('n', '+', ':vertical resize +5<CR>') -- Increase window width
 vim.keymap.set('n', '-', ':vertical resize -5<CR>') -- Decrease window width
+
 -- TODO assign better symbols
 -- vim.keymap.set('n', '=', ':resize +5<CR>') -- Increase window height
 -- vim.keymap.set('n', '-', ':resize -5<CR>') -- Decrease window height
 
 -- Telescope integration
--- vim.keymap.set("n", ";", "<cmd>Telescope resume<cr>", opts)  -- Resume last telescope search
-vim.keymap.set('n', '<C-s>', ':Telescope current_buffer_fuzzy_find<CR>', opts) -- Fuzzy find in current buffer
+vim.keymap.set('n', '<C-f>', ':Telescope current_buffer_fuzzy_find<CR>', opts) -- Fuzzy find in current buffer
 
 -- Text manipulation
 vim.keymap.set('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', { silent = true }) -- Split line at cursor
@@ -62,9 +63,6 @@ vim.keymap.set('n', '<C-a>', 'ggVG', opts) -- Select entire buffer
 
 -- File operations
 vim.keymap.set('n', '<C-n>', ':w %:h/', opts) -- Start writing file in current directory
-
--- Custom functions
-vim.keymap.set('n', '<C-P>', ':lua require("config.utils").toggle_go_test()<CR>', opts) -- Toggle Go test
 
 -- Clear search highlighting
 vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>', opts)
@@ -79,21 +77,6 @@ vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 vim.keymap.set('n', '<leader>nc', ':Neotree $LOCALAPPDATA/nvim<CR>', { desc = 'Open Neovim config in Neo-tree' })
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
--- Floating Neotree in the middle of the screen
--- vim.keymap.set('n', '<leader>e', function()
---   require('neo-tree.command').execute {
---     action = 'focus', -- OPTIONAL, this is the default value
---     source = 'filesystem', -- OPTIONAL, this is the default value
---     position = 'float',
---     toggle = true,
---     reveal = true,
---   }
--- end, { desc = 'Toggle floating Neotree' })
---
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
@@ -107,20 +90,16 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-e>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set('n', '<space>st', function()
   vim.cmd.vnew()
-  vim.cmd.term()
+  vim.cmd 'term powershell -NoLogo' -- Change 'pwsh' to 'powershell' if using older Windows
   vim.cmd.wincmd 'J'
-  vim.api.nvim_win_set_height(0, 5)
+  vim.api.nvim_win_set_height(0, 10)
 end)
 
 vim.keymap.set('n', 'ciw', '"_ciw', { noremap = true })
@@ -132,6 +111,6 @@ end, { expr = true })
 vim.keymap.set('n', '<leader>dd', function()
   vim.diagnostic.open_float {
     header = '',
-    prefix = '', -- Remove prefix from diagnostic messages
+    prefix = '',
   }
 end, { desc = 'Open diagnostic float' })
