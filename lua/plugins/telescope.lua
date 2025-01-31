@@ -117,7 +117,7 @@ return {
         color = colors.purple,
         name = 'PNG',
       },
-      python = {
+      py = {
         icon = '', -- VS Code uses this TS icon (adjust if necessary)
         color = colors.blue, -- Blueish from VS Code
         name = 'Python',
