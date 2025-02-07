@@ -1,7 +1,15 @@
 return {
   'edgedb/edgedb-vim',
-  ft = { 'esdl', 'edgeql' }, -- Load only for EdgeDB file types
+  ft = { 'esdl', 'edgeql' },
   config = function()
-    -- No explicit setup needed, but you can add additional settings here if required
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'esdl', 'edgeql' },
+      callback = function()
+        vim.opt_local.expandtab = true
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+      end,
+    })
   end,
 }
