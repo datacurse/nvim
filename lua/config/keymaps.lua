@@ -35,8 +35,8 @@ vim.keymap.set('v', '<', '<gv') -- Unindent and maintain selection
 vim.keymap.set('v', '>', '>gv') -- Indent and maintain selection
 
 -- Paste operations that preserve the register
-vim.keymap.set('v', 'p', '"_dp') -- Paste over selection without yanking
-vim.keymap.set('v', 'P', '"_dP') -- Paste before selection without yanking
+-- vim.keymap.set('v', 'p', '"_dp') -- Paste over selection without yanking
+-- vim.keymap.set('v', 'P', '"_dP') -- Paste before selection without yanking
 
 -- Special yank operation
 vim.keymap.set('n', 'YY', 'va{Vy', opts) -- Yank everything between curly braces including the braces
