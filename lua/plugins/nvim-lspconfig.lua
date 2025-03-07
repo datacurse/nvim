@@ -7,12 +7,25 @@ return {
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-    -- Useful status updates for LSP.
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
+    {
+      'j-hui/fidget.nvim',
+      tag = 'v1.4.0',
+      opts = {
+        progress = {
+          display = {
+            done_icon = '✓', -- Icon shown when all LSP progress tasks are complete
+          },
+        },
+        notification = {
+          window = {
+            winblend = 0, -- Background color opacity in the notification window
+          },
+        },
+      },
+    },
 
     -- Allows extra capabilities provided by nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
+    -- 'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -111,86 +124,93 @@ return {
       vim.diagnostic.config { signs = { text = diagnostic_signs } }
     end
 
-    -- LSP servers and clients are able to communicate to each other what features they support.
-    --  By default, Neovim doesn't support everything that is in the LSP specification.
-    --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-    --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    -- Enable the following language servers
-    --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-    --
-    --  Add any additional override configuration in the following tables. Available keys are:
-    --  - cmd (table): Override the default command used to start the server
-    --  - filetypes (table): Override the default list of associated filetypes for the server
-    --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-    --  - settings (table): Override the default settings passed when initializing the server.
-    --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- clangd = {},
-      -- gopls = {},
-      pyright = {
-        settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = 'basic',
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-            },
-          },
-        },
-      },
-      -- ruff_lsp = {},
-      -- rust_analyzer = {},
-      -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      --
-      -- Some languages (like typescript) have entire language plugins that can be useful:
-      --    https://github.com/pmizio/typescript-tools.nvim
-      --
-      -- But for many setups, the LSP (`ts_ls`) will work just fine
-      -- ts_ls = {},
-      --
-      mdx_analyzer = {
-        -- If you want TypeScript turned on, add init_options:
-        init_options = {
-          typescript = {
-            enabled = true,
-            -- Optionally define `tsdk` if needed
-            -- tsdk = "/absolute/path/to/typescript/lib"
-          },
-        },
-      },
       lua_ls = {
+        -- cmd = {...},
+        -- filetypes { ...},
+        -- capabilities = {},
         settings = {
           Lua = {
-            runtime = {
-              -- Tell lua_ls that we’re running in Neovim’s LuaJIT
-              version = 'LuaJIT',
-            },
-            -- Make the server aware of Neovim runtime files
+            runtime = { version = 'LuaJIT' },
             workspace = {
               checkThirdParty = false,
+              -- Tells lua_ls where to find all the Lua files that you have loaded
+              -- for your neovim configuration.
               library = {
-                vim.env.VIMRUNTIME,
-                -- Depending on the usage, you might want to add additional paths here.
                 '${3rd}/luv/library',
-                -- "${3rd}/busted/library",
+                unpack(vim.api.nvim_get_runtime_file('', true)),
               },
-              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-              -- library = vim.api.nvim_get_runtime_file("", true)
+              -- If lua_ls is really slow on your computer, you can try this instead:
+              -- library = { vim.env.VIMRUNTIME },
+            },
+            completion = {
+              callSnippet = 'Replace',
+            },
+            telemetry = { enable = false },
+            diagnostics = { disable = { 'missing-fields' } },
+          },
+        },
+      },
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              mccabe = { enabled = false },
+              pylsp_mypy = { enabled = false },
+              pylsp_black = { enabled = false },
+              pylsp_isort = { enabled = false },
             },
           },
         },
       },
+      ruff = {
+        commands = {
+          RuffAutofix = {
+            function()
+              vim.lsp.buf.execute_command {
+                command = 'ruff.applyAutofix',
+                arguments = {
+                  { uri = vim.uri_from_bufnr(0) },
+                },
+              }
+            end,
+            description = 'Ruff: Fix all auto-fixable problems',
+          },
+          RuffOrganizeImports = {
+            function()
+              vim.lsp.buf.execute_command {
+                command = 'ruff.applyOrganizeImports',
+                arguments = {
+                  { uri = vim.uri_from_bufnr(0) },
+                },
+              }
+            end,
+            description = 'Ruff: Format imports',
+          },
+        },
+      },
+      jsonls = {},
+      sqlls = {},
+      terraformls = {},
+      yamlls = {},
+      bashls = {},
+      dockerls = {},
+      docker_compose_language_service = {},
+      -- tailwindcss = {},
+      -- graphql = {},
+      -- html = { filetypes = { 'html', 'twig', 'hbs' } },
+      -- cssls = {},
+      -- ltex = {},
+      -- texlab = {},
     }
 
-    -- Ensure the servers and tools above are installed
-    --  To check the current status of installed tools and/or manually install
-    --  other tools, you can run
-    --    :Mason
-    --
-    --  You can press `g?` for help in this menu.
     require('mason').setup()
 
     -- You can add other tools here that you want Mason to install
@@ -198,9 +218,6 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
-      'black', -- Python formatter:
-      'ruff', -- Fast Python linter
-      'mdx_analyzer',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
