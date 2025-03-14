@@ -1,4 +1,4 @@
-local current_theme = 'vscode-modern' -- Change this to "vscode-modern" to use VSCode Modern theme
+local current_theme = 'catppuccin' 
 
 return {
   {
@@ -32,4 +32,14 @@ return {
       vim.cmd [[colorscheme vscode_modern]]
     end,
   },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      require('catppuccin').setup {
+        flavour = "macchiato"
+      }
+      vim.cmd [[colorscheme catppuccin]]
+    end,
+  }
 }
