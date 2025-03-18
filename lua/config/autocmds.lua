@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'lua',
     'elm',
     'esdl',
+    'norg',
   },
   callback = function()
     vim.opt_local.expandtab = true -- Convert tabs to spaces

@@ -41,6 +41,8 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
+-- vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
+-- vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 
 -- Blinking cursor
 -- vim.opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,'

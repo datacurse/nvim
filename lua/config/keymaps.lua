@@ -46,8 +46,8 @@ vim.keymap.set('n', '<M-Right>', ':bnext<CR>', opts) -- Next buffer
 vim.keymap.set('n', '<M-Left>', ':bprevious<CR>', opts) -- Previous buffer
 
 -- Window resizing controls
-vim.keymap.set('n', '+', ':vertical resize +5<CR>') -- Increase window width
-vim.keymap.set('n', '-', ':vertical resize -5<CR>') -- Decrease window width
+-- vim.keymap.set('n', '+', ':vertical resize +5<CR>') -- Increase window width
+-- vim.keymap.set('n', '-', ':vertical resize -5<CR>') -- Decrease window width
 
 -- TODO assign better symbols
 -- vim.keymap.set('n', '=', ':resize +5<CR>') -- Increase window height
@@ -114,3 +114,4 @@ vim.keymap.set('n', '<leader>dd', function()
     prefix = '',
   }
 end, { desc = 'Open diagnostic float' })
+
