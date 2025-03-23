@@ -1,0 +1,5 @@
+{
+  "blink.cmp": { "branch": "main", "commit": "4607923f60029f8cb28e6950a078f93fd33e1288" },
+  "grug-far.nvim": { "branch": "main", "commit": "2c7ef09353714bd4954f5459d9a7e2579a050dc7" },
+  "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" }
+}
