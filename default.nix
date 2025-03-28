@@ -42,6 +42,7 @@
         nvim-dap
         nvim-dap-ui
         nvim-dap-virtual-text
+        neo-tree-nvim
       ];
     };
 
@@ -56,22 +57,26 @@
 
   # see :help nixCats.flake.outputs.packageDefinitions
   packageDefinitions = {
-    # These are the names of your packages
-    # you can include as many as you wish.
-    # each of these sets are also written into the nixCats plugin for querying within lua.
     nvim = {pkgs , mkNvimPlugin, ... }: {
       settings = {
-        # see :help nixCats.flake.outputs.settings
-        # IMPORTANT:
-        # your aliases may not conflict with other packages.
-        # aliases = [ "vim" ];
+        aliases = [ "vim" ];
       };
-      # and a set of categories that you want
-      # All categories you wish to include must be marked true
       categories = {
         general = true;
       };
-      # anything else to pass and grab in lua with `nixCats.extra`
+      extra = {};
+    };
+
+
+    nvim-dev = {pkgs , mkNvimPlugin, ... }: {
+      settings = {
+        wrapRc = false;
+        unwrappedCfgPath = "/home/loki/.config/nixCats-nvim";
+        aliases = [ "vi" ];
+      };
+      categories = {
+        general = true;
+      };
       extra = {};
     };
   };
@@ -79,13 +84,4 @@
   # We will build the one named nvim here and export that one.
   defaultPackageName = "nvim";
 
-# return our package!
 in utils.baseBuilder luaPath { inherit pkgs; } categoryDefinitions packageDefinitions defaultPackageName
-# NOTE: or to return a set of all of them:
-# `in utils.mkAllPackages (utils.baseBuilder luaPath { inherit pkgs; } categoryDefinitions packageDefinitions defaultPackageName)`
-
-# NOTE: you may call .overrideNixCats on the resulting package or packages
-# to construct different packages from
-# your packageDefinitions from the resulting derivation of this expression!
-# `finalPackage.overrideNixCats { name = "aDifferentPackage"; }`
-# see :h nixCats.overriding
