@@ -9,7 +9,6 @@
   utils = import nixCats;
   # path to your new .config/nvim
   luaPath = ./.;
-
   # see :help nixCats.flake.outputs.categories
   categoryDefinitions = { pkgs, settings, categories, extra, name, mkNvimPlugin, ... }@packageDef: {
     lspsAndRuntimeDeps = {
@@ -21,7 +20,6 @@
         alejandra
       ];
     };
-
     # This is for plugins that will load at startup without using packadd:
     startupPlugins = {
       general = with pkgs.vimPlugins; [
@@ -45,7 +43,6 @@
         neo-tree-nvim
       ];
     };
-
     # not loaded automatically at startup.
     # use with packadd and an autocommand in config to achieve lazy loading
     optionalPlugins = {
@@ -54,25 +51,13 @@
       ];
     };
   };
-
   # see :help nixCats.flake.outputs.packageDefinitions
   packageDefinitions = {
     nvim = {pkgs , mkNvimPlugin, ... }: {
       settings = {
-        aliases = [ "vim" ];
-      };
-      categories = {
-        general = true;
-      };
-      extra = {};
-    };
-
-
-    nvim-dev = {pkgs , mkNvimPlugin, ... }: {
-      settings = {
+        aliases = [ "n" ];
         wrapRc = false;
         unwrappedCfgPath = "/home/loki/.config/nixCats-nvim";
-        aliases = [ "vi" ];
       };
       categories = {
         general = true;
@@ -80,8 +65,6 @@
       extra = {};
     };
   };
-
   # We will build the one named nvim here and export that one.
   defaultPackageName = "nvim";
-
 in utils.baseBuilder luaPath { inherit pkgs; } categoryDefinitions packageDefinitions defaultPackageName
