@@ -19,6 +19,15 @@
         alejandra
         man
         lazygit
+        ghostscript
+
+        (texlive.combine {
+          inherit (texlive) scheme-medium
+            standalone
+            varwidth
+            preview
+            multirow;
+        })
       ];
     };
     # This is for plugins that will load at startup without using packadd:
@@ -44,7 +53,7 @@
         # iceberg-vim
         # nvim-web-devicons
         catppuccin-nvim
-        neorg
+        # image-nvim
       ];
     };
     # not loaded automatically at startup.

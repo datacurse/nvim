@@ -10,7 +10,8 @@ conform.setup({
     lua = { "stylua" },
     -- templ = { "templ" },
     -- Conform will run multiple formatters sequentially
-    -- python = { "isort", "black" },
+    python = { "isort", "black" },
+    nix = { "nixfmt" },
     -- Use a sub-list to run only the first available formatter
     -- javascript = { { "prettierd", "prettier" } },
   },

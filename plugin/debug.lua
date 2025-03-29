@@ -3,7 +3,6 @@ if not nixCats('general') then
 end
 -- NOTE: Base debugging setup
 -- TODO: To run a debugger, set up or install a language specific config
-
 local dap = require 'dap'
 local dapui = require 'dapui'
 
