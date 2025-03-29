@@ -12,6 +12,3 @@ require('gitsigns').setup({
     changedelete = { text = '~' },
   },
 })
--- vim.cmd([[hi GitSignsAdd guifg=#04de21]])
--- vim.cmd([[hi GitSignsChange guifg=#83fce6]])
--- vim.cmd([[hi GitSignsDelete guifg=#fa2526]])

@@ -2,19 +2,25 @@ if not nixCats('general') then
   return
 end
 require("snacks").setup({
+  terminal = {},
+  lazygit = {},
   picker = {},
   bigfile = {},
   image = {},
-  lazygit = {},
-  terminal = {},
   rename = {},
   notifier = {},
   indent = {},
   gitbrowse = {},
   scope = {},
 })
+
+-- terminal
 vim.keymap.set("n", "<c-\\>", function() Snacks.terminal.open() end, { desc = 'Snacks Terminal' })
-vim.keymap.set("n", "<leader>_", function() Snacks.lazygit.open() end, { desc = 'Snacks LazyGit' })
+
+-- lazygit
+vim.keymap.set("n", "<leader>lg", function() Snacks.lazygit.open() end, { desc = 'Snacks LazyGit' })
+
+-- picker
 vim.keymap.set('n', "<leader>sf", function() Snacks.picker.smart() end, { desc = "Smart Find Files" })
 vim.keymap.set('n', "<leader><leader>s", function() Snacks.picker.buffers() end, { desc = "Search Buffers" })
 -- find

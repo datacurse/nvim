@@ -17,6 +17,8 @@
         stylua
         nixd
         alejandra
+        man
+        lazygit
       ];
     };
     # This is for plugins that will load at startup without using packadd:
@@ -43,7 +45,6 @@
         # nvim-web-devicons
         catppuccin-nvim
         neorg
-        lazygit-nvim
       ];
     };
     # not loaded automatically at startup.
