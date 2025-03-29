@@ -1,15 +1,9 @@
--- NOTE: init.lua gets ran before anything else.
-
--- NOTE: These 2 need to be set up before any plugins are loaded.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.startuptime_event_width = 0
+vim.g.startuptime_tries = 10
+vim.g.startuptime_exe_path = nixCats.packageBinPath
 
--- [[ Setting options ]]
--- See `:help vim.o`
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
@@ -92,6 +86,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = 'Scroll Down' })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up' })
 vim.keymap.set("n", "n", "nzzzv", { desc = 'Next Search Result' })
 vim.keymap.set("n", "N", "Nzzzv", { desc = 'Previous Search Result' })
+
+-- Keymaps for working with buffer
 vim.keymap.set("n", "<leader><leader>[", "<cmd>bprev<CR>", { desc = 'Previous buffer' })
 vim.keymap.set("n", "<leader><leader>]", "<cmd>bnext<CR>", { desc = 'Next buffer' })
 vim.keymap.set("n", "<leader><leader>l", "<cmd>b#<CR>", { desc = 'Last buffer' })
@@ -102,18 +98,14 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader><leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- Sync clipboard between OS and Neovim.
--- But it constantly clobbers your system clipboard whenever you delete anything.
---  See `:help 'clipboard'`
--- vim.o.clipboard = 'unnamedplus'
--- You should instead use these keybindings to use the clipboard so that they are still easy to use, but dont conflict
-vim.keymap.set("n", '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
-vim.keymap.set({"v", "x"}, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
-vim.keymap.set({"n", "v", "x"}, '<leader>yy', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
-vim.keymap.set({"n", "v", "x"}, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
+-- Copy Paste
+vim.keymap.set({"v", "x", "n"}, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
 vim.keymap.set({'n', 'v', 'x'}, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
 vim.keymap.set('i', '<C-p>', '<C-r><C-p>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
 vim.keymap.set("x", "<leader>P", '"_dP', { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+
+-- Select
+vim.keymap.set({"n", "v", "i"}, "<C-a>", "<Esc>ggVG", { desc = 'Select All' })

@@ -13,7 +13,6 @@
   categoryDefinitions = { pkgs, settings, categories, extra, name, mkNvimPlugin, ... }@packageDef: {
     lspsAndRuntimeDeps = {
       general = with pkgs; [
-        lazygit
         lua-language-server
         stylua
         nixd
@@ -24,7 +23,6 @@
     startupPlugins = {
       general = with pkgs.vimPlugins; [
         snacks-nvim
-        onedark-nvim
         vim-sleuth
         mini-nvim
         nvim-lspconfig
@@ -41,6 +39,11 @@
         nvim-dap-ui
         nvim-dap-virtual-text
         neo-tree-nvim
+        # iceberg-vim
+        # nvim-web-devicons
+        catppuccin-nvim
+        neorg
+        lazygit-nvim
       ];
     };
     # not loaded automatically at startup.
