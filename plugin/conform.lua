@@ -1,25 +1,41 @@
-if not nixCats('general') then
+if not nixCats("general") then
   return
 end
 
 local conform = require("conform")
 conform.setup({
   formatters_by_ft = {
-    -- NOTE: download some formatters in lspsAndRuntimeDeps
-    -- and configure them here
     lua = { "stylua" },
-    -- templ = { "templ" },
-    -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
     nix = { "nixfmt" },
-    -- Use a sub-list to run only the first available formatter
-    -- javascript = { { "prettierd", "prettier" } },
+  },
+  formatters = {
+    -- Configure formatters to use buffer-local indent settings
+    stylua = {
+      prepend_args = function()
+        return {
+          "--indent-type",
+          "Spaces",
+          "--indent-width",
+          vim.bo.shiftwidth,
+        }
+      end,
+    },
+    black = {
+      prepend_args = function()
+        return {
+          "--line-length=88",
+          -- Black automatically uses 4 spaces for Python, so no need to configure indent
+        }
+      end,
+    },
   },
 })
+
 vim.keymap.set({ "n", "v" }, "<leader>FF", function()
   conform.format({
     lsp_fallback = true,
-       async = false,
+    async = false,
     timeout_ms = 1000,
   })
 end, { desc = "[F]ormat [F]ile" })

@@ -20,14 +20,14 @@
         man
         lazygit
         ghostscript
-
-        (texlive.combine {
-          inherit (texlive) scheme-medium
-            standalone
-            varwidth
-            preview
-            multirow;
-        })
+        # python3Packages.pylatexenc
+        # (texlive.combine {
+        #   inherit (texlive) scheme-medium
+        #     standalone
+        #     varwidth
+        #     preview
+        #     multirow;
+        # })
       ];
     };
     # This is for plugins that will load at startup without using packadd:
@@ -53,6 +53,7 @@
         # nvim-web-devicons
         catppuccin-nvim
         # image-nvim
+        render-markdown-nvim
       ];
     };
     # not loaded automatically at startup.

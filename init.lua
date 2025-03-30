@@ -27,11 +27,22 @@ vim.o.mouse = 'a'
 -- vim.o.smarttab = true
 vim.opt.cpoptions:append('I')
 vim.o.expandtab = true
--- vim.o.smartindent = true
--- vim.o.autoindent = true
--- vim.o.tabstop = 4
--- vim.o.softtabstop = 4
--- vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.smartindent = true
+vim.o.autoindent = true
+
+-- File-specific indentation settings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"python"},
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
+  end,
+  desc = "Set Python-specific indent to 4 spaces",
+})
 
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
