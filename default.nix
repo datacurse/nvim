@@ -21,24 +21,23 @@
         lazygit
         ghostscript
         # python3Packages.pylatexenc
-        # (texlive.combine {
-        #   inherit (texlive) scheme-medium
-        #     standalone
-        #     varwidth
-        #     preview
-        #     multirow;
-        # })
+        (texlive.combine {
+          inherit (texlive) scheme-medium
+            standalone
+            varwidth
+            preview
+            multirow;
+        })
       ];
     };
     # This is for plugins that will load at startup without using packadd:
     startupPlugins = {
       general = with pkgs.vimPlugins; [
-        # snacks-nvim
-        (mkNvimPlugin "snacks.nvim" (builtins.fetchGit {
-        url = "https://github.com/folke/snacks.nvim";
-        # You can specify a specific commit or tag for reproducibility
-        # rev = "abc123..."; 
-      }))
+        snacks-nvim
+        # (mkNvimPlugin "snacks.nvim" (builtins.fetchGit {
+        #   url = "https://github.com/folke/snacks.nvim";
+        #   rev = "bc0630e43be5699bb94dadc302c0d21615421d93"; 
+        # }))
         vim-sleuth
         mini-nvim
         nvim-lspconfig
