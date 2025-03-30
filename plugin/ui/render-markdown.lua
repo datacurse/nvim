@@ -5,93 +5,63 @@ end
 local render_markdown = require('render-markdown')
 
 render_markdown.setup({
-  -- Basic configuration
   only_render_image_at_cursor = true,
-  file_types = { 'markdown' }, -- Add "vimwiki" here if you use it
+  file_types = { 'markdown' },
+  completions = { blink = { enabled = true } },
 
-  -- Heading configuration
   heading = {
-    enabled = true,
     render_modes = true,
-    icons = { '󰬺 ', '󰲢 ', '󰲤 ', '󰲦 ', '󰲨 ', '󰲪 ' },
+    icons = { '󰬺  ', '󰬻  ', '󰬼  ', '󰬽  ', '󰬾  ', '󰬿  ' },
     position = 'inline',
+    -- signs = { '󰫎 ' },
     sign = false,
     backgrounds = {},
   },
 
-  -- -- Code blocks configuration
-  -- code_blocks = {
-  --   icon = { enabled = true },
-  --   background = { enabled = true },
-  --   border = { enabled = true, thickness = 1 },
-  --   padding = { enabled = true },
-  -- },
-  --
-  -- -- List bullet configuration
-  -- bullets = {
-  --   icons = { '•', '◦', '⦿' }, -- You can customize these icons
-  --   enabled = true,
-  --   color = { enabled = true },
-  -- },
-  --
-  -- -- Checkbox configuration
-  -- checkboxes = {
-  --   enabled = true,
-  --   icons = {
-  --     -- Default checkboxes with customizable icons
-  --     { pattern = '%[ %]', icon = '☐', highlight = 'RenderMarkdownUnchecked' },
-  --     { pattern = '%[x%]', icon = '☑', highlight = 'RenderMarkdownChecked' },
-  --     -- Additional custom checkbox states
-  --     { pattern = '%[/%]', icon = '⚀', highlight = 'RenderMarkdownTodo' },
-  --     { pattern = '%[>%]', icon = '➡️', highlight = 'RenderMarkdownTodo' },
-  --     { pattern = '%[!%]', icon = '⚠️', highlight = 'RenderMarkdownWarn' },
-  --   },
-  -- },
-  --
-  -- -- Block quote configuration
-  -- quotes = {
-  --   enabled = true,
-  --   icon = '▌', -- Block quote marker
-  --   color = { enabled = true },
-  --   line_breaks = { enabled = true },
-  -- },
-  --
-  -- -- Table configuration
-  -- table = {
-  --   border = { enabled = true },
-  --   color = { enabled = true },
-  --   alignment = { enabled = true },
-  --   auto_align = { enabled = true },
-  -- },
-  --
-  -- -- Callout configuration
-  -- callouts = {
-  --   enabled = true,
-  --   -- Default callout types
-  --   icons = {
-  --     note = { icon = '󰎚', highlight = 'RenderMarkdownInfo' },
-  --     info = { icon = '󰋼', highlight = 'RenderMarkdownInfo' },
-  --     tip = { icon = '󰌵', highlight = 'RenderMarkdownHint' },
-  --     important = { icon = '󰀘', highlight = 'RenderMarkdownHint' },
-  --     warning = { icon = '󰀦', highlight = 'RenderMarkdownWarn' },
-  --     caution = { icon = '󰀪', highlight = 'RenderMarkdownWarn' },
-  --     danger = { icon = '󰚌', highlight = 'RenderMarkdownError' },
-  --     success = { icon = '󰄭', highlight = 'RenderMarkdownSuccess' },
-  --     question = { icon = '󰮔', highlight = 'RenderMarkdownInfo' },
-  --     todo = { icon = '󰄬', highlight = 'RenderMarkdownSuccess' },
-  --     failure = { icon = '󰅙', highlight = 'RenderMarkdownError' },
-  --     bug = { icon = '󰃤', highlight = 'RenderMarkdownError' },
-  --     example = { icon = '󰛄', highlight = 'RenderMarkdownInfo' },
-  --     quote = { icon = '󰅀', highlight = 'RenderMarkdownQuote' },
-  --   },
-  -- },
-  --
-  -- -- Links configuration
-  -- links = {
-  --   enabled = true,
-  --   icon = '🔗',
-  --   color = { enabled = true },
-  -- },
+  code = {
+    sign = false,
+  },
+
+  dash = {},
+
+  bullet = {
+    icons = { '●', '○', '◆', '◇' },
+  },
+
+  checkbox = {
+    unchecked = {
+      icon = '󰄱 ',
+      highlight = 'RenderMarkdownUnchecked',
+    },
+    checked = {
+      icon = '󰄵 ',
+      highlight = 'RenderMarkdownChecked',
+    },
+    custom = {
+      todo = { raw = '[-]', rendered = ' ', highlight = 'RenderMarkdownTodo' },
+    },
+  },
+
+  quote = {
+    repeat_linebreak = true,
+  },
+
+  pipe_table = {
+    preset = 'round',
+    alignment_indicator = '',
+  },
+
+  callout = {},
+
+  link = {
+    custom = {
+      python = {
+        pattern = '%.py$',
+        icon = '󰌠 ',
+      },
+    },
+  },
+
   --
   -- -- -- LaTeX support configuration
   -- -- latex = {
@@ -100,12 +70,7 @@ render_markdown.setup({
   -- --   renderer = "pylatexenc",
   -- -- },
   --
-  -- -- Horizontal break line
-  -- dashed_line = {
-  --   enabled = true,
-  --   icon = '─', -- You can use other characters like "•" or "━"
-  --   color = { enabled = true },
-  -- },
+
   --
   -- -- Org-mode like indent guide
   -- indent = {

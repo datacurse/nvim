@@ -32,7 +32,21 @@ require('snacks').setup({
   },
   rename = {},
   notifier = {},
-  indent = {},
+  indent = {
+    animate = { enabled = false },
+    filter = function(buf)
+      -- Get the filetype of the buffer
+      local ft = vim.bo[buf].filetype
+
+      -- Skip indent guides for markdown files
+      if ft == 'markdown' then
+        return false
+      end
+
+      -- Otherwise, use the default filter logic
+      return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ''
+    end,
+  },
   gitbrowse = {},
   scope = {},
 })
