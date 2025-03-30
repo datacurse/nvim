@@ -4,19 +4,33 @@ end
 require("snacks").setup({
   terminal = {},
   lazygit = {},
-  picker = {},
+  picker = {
+    sources = {
+      explorer = {
+        -- Explorer picker configuration (optional)
+      }
+    }
+  },
   bigfile = {},
   image = {
     enabled = true,
-    -- doc = {
-    --   enabled = true,
-    -- },
+    doc = {
+      enabled = true,
+      inline = true,
+      float = true,
+     conceal = function(lang, type)
+      return false
+    end,
+    },
   },
   rename = {},
   notifier = {},
   indent = {},
   gitbrowse = {},
   scope = {},
+  explorer = {
+    replace_netrw = true, -- Replace netrw with the snacks explorer
+  }
 })
 
 -- terminal
@@ -33,7 +47,7 @@ vim.keymap.set('n', "<leader>fg", function() Snacks.picker.git_files() end, { de
 vim.keymap.set('n', "<leader>sb", function() Snacks.picker.lines() end, { desc = "Buffer Lines" })
 vim.keymap.set('n', "<leader>sB", function() Snacks.picker.grep_buffers() end, { desc = "Grep Open Buffers" })
 vim.keymap.set('n', "<leader>sg", function() Snacks.picker.grep() end, { desc = "Grep" })
-vim.keymap.set({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Visual selection or ord" })
+vim.keymap.set({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Visual selection or word" })
 -- search
 vim.keymap.set('n', "<leader>sb", function() Snacks.picker.lines() end, { desc = "Buffer Lines" })
 vim.keymap.set('n', "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
@@ -47,3 +61,11 @@ vim.keymap.set('n', "<leader>sM", function() Snacks.picker.man() end, { desc = "
 vim.keymap.set('n', "<leader>sq", function() Snacks.picker.qflist() end, { desc = "Quickfix List" })
 vim.keymap.set('n', "<leader>sR", function() Snacks.picker.resume() end, { desc = "Resume" })
 vim.keymap.set('n', "<leader>su", function() Snacks.picker.undo() end, { desc = "Undo History" })
+
+-- Explorer
+vim.keymap.set('n', "<leader>e", function() Snacks.explorer.open() end, { desc = "Open Explorer" })
+vim.keymap.set('n', "<leader>r", function() Snacks.explorer.reveal() end, { desc = "Reveal in Explorer" })
+
+-- Window navigation
+vim.keymap.set('n', "<C-h>", "<C-w>h", { desc = "Navigate to left window" })
+vim.keymap.set('n', "<C-l>", "<C-w>l", { desc = "Navigate to right window" })

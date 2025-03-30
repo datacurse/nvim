@@ -13,4 +13,17 @@ require("blink.cmp").setup({
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer' },
   },
+  -- Disable autocompletion for specific filetypes
+  enabled = function()
+    local disabled_filetypes = { 'markdown', 'text', 'tex', 'plaintex', 'md', 'txt' }
+    local current_filetype = vim.bo.filetype
+    
+    for _, ft in ipairs(disabled_filetypes) do
+      if ft == current_filetype then
+        return false
+      end
+    end
+    
+    return true
+  end,
 })

@@ -49,7 +49,6 @@
         nvim-dap
         nvim-dap-ui
         nvim-dap-virtual-text
-        neo-tree-nvim
         # iceberg-vim
         # nvim-web-devicons
         catppuccin-nvim
