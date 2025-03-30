@@ -9,6 +9,6 @@ end
 vim.cmd.packadd('lazydev.nvim')
 require('lazydev').setup({
   library = {
-    { path = nixCats.nixCatsPath and nixCats.nixCatsPath .. 'lua' or nil, words = { "nixCats" } },
+    { path = nixCats.nixCatsPath and nixCats.nixCatsPath .. 'lua' or nil, words = { 'nixCats' } },
   },
 })

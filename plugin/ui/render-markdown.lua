@@ -1,17 +1,17 @@
-if not nixCats("general") then
+if not nixCats('general') then
   return
 end
 
-local render_markdown = require("render-markdown")
+local render_markdown = require('render-markdown')
 
 render_markdown.setup({
   -- Basic configuration
   only_render_image_at_cursor = true,
-  file_types = { "markdown" }, -- Add "vimwiki" here if you use it
+  file_types = { 'markdown' }, -- Add "vimwiki" here if you use it
 
   -- Heading configuration
   headings = {
-    icons = { "󰲠 ", "󰲢 ", "󰲤 ", "󰲦 ", "󰲨 ", "󰲪 " },
+    icons = { '󰲠 ', '󰲢 ', '󰲤 ', '󰲦 ', '󰲨 ', '󰲪 ' },
     background = { enabled = true },
     border = { enabled = true },
     padding = { enabled = true },
@@ -27,7 +27,7 @@ render_markdown.setup({
 
   -- List bullet configuration
   bullets = {
-    icons = { "•", "◦", "⦿" }, -- You can customize these icons
+    icons = { '•', '◦', '⦿' }, -- You can customize these icons
     enabled = true,
     color = { enabled = true },
   },
@@ -37,19 +37,19 @@ render_markdown.setup({
     enabled = true,
     icons = {
       -- Default checkboxes with customizable icons
-      { pattern = "%[ %]", icon = "☐", highlight = "RenderMarkdownUnchecked" },
-      { pattern = "%[x%]", icon = "☑", highlight = "RenderMarkdownChecked" },
+      { pattern = '%[ %]', icon = '☐', highlight = 'RenderMarkdownUnchecked' },
+      { pattern = '%[x%]', icon = '☑', highlight = 'RenderMarkdownChecked' },
       -- Additional custom checkbox states
-      { pattern = "%[/%]", icon = "⚀", highlight = "RenderMarkdownTodo" },
-      { pattern = "%[>%]", icon = "➡️", highlight = "RenderMarkdownTodo" },
-      { pattern = "%[!%]", icon = "⚠️", highlight = "RenderMarkdownWarn" },
+      { pattern = '%[/%]', icon = '⚀', highlight = 'RenderMarkdownTodo' },
+      { pattern = '%[>%]', icon = '➡️', highlight = 'RenderMarkdownTodo' },
+      { pattern = '%[!%]', icon = '⚠️', highlight = 'RenderMarkdownWarn' },
     },
   },
 
   -- Block quote configuration
   quotes = {
     enabled = true,
-    icon = "▌", -- Block quote marker
+    icon = '▌', -- Block quote marker
     color = { enabled = true },
     line_breaks = { enabled = true },
   },
@@ -67,27 +67,27 @@ render_markdown.setup({
     enabled = true,
     -- Default callout types
     icons = {
-      note = { icon = "󰎚", highlight = "RenderMarkdownInfo" },
-      info = { icon = "󰋼", highlight = "RenderMarkdownInfo" },
-      tip = { icon = "󰌵", highlight = "RenderMarkdownHint" },
-      important = { icon = "󰀘", highlight = "RenderMarkdownHint" },
-      warning = { icon = "󰀦", highlight = "RenderMarkdownWarn" },
-      caution = { icon = "󰀪", highlight = "RenderMarkdownWarn" },
-      danger = { icon = "󰚌", highlight = "RenderMarkdownError" },
-      success = { icon = "󰄭", highlight = "RenderMarkdownSuccess" },
-      question = { icon = "󰮔", highlight = "RenderMarkdownInfo" },
-      todo = { icon = "󰄬", highlight = "RenderMarkdownSuccess" },
-      failure = { icon = "󰅙", highlight = "RenderMarkdownError" },
-      bug = { icon = "󰃤", highlight = "RenderMarkdownError" },
-      example = { icon = "󰛄", highlight = "RenderMarkdownInfo" },
-      quote = { icon = "󰅀", highlight = "RenderMarkdownQuote" },
+      note = { icon = '󰎚', highlight = 'RenderMarkdownInfo' },
+      info = { icon = '󰋼', highlight = 'RenderMarkdownInfo' },
+      tip = { icon = '󰌵', highlight = 'RenderMarkdownHint' },
+      important = { icon = '󰀘', highlight = 'RenderMarkdownHint' },
+      warning = { icon = '󰀦', highlight = 'RenderMarkdownWarn' },
+      caution = { icon = '󰀪', highlight = 'RenderMarkdownWarn' },
+      danger = { icon = '󰚌', highlight = 'RenderMarkdownError' },
+      success = { icon = '󰄭', highlight = 'RenderMarkdownSuccess' },
+      question = { icon = '󰮔', highlight = 'RenderMarkdownInfo' },
+      todo = { icon = '󰄬', highlight = 'RenderMarkdownSuccess' },
+      failure = { icon = '󰅙', highlight = 'RenderMarkdownError' },
+      bug = { icon = '󰃤', highlight = 'RenderMarkdownError' },
+      example = { icon = '󰛄', highlight = 'RenderMarkdownInfo' },
+      quote = { icon = '󰅀', highlight = 'RenderMarkdownQuote' },
     },
   },
 
   -- Links configuration
   links = {
     enabled = true,
-    icon = "🔗",
+    icon = '🔗',
     color = { enabled = true },
   },
 
@@ -101,14 +101,14 @@ render_markdown.setup({
   -- Horizontal break line
   dashed_line = {
     enabled = true,
-    icon = "─", -- You can use other characters like "•" or "━"
+    icon = '─', -- You can use other characters like "•" or "━"
     color = { enabled = true },
   },
 
   -- Org-mode like indent guide
   indent = {
     enabled = true,
-    icon = "│", -- Vertical bar for indent guide
+    icon = '│', -- Vertical bar for indent guide
     color = { enabled = true },
   },
 
@@ -127,15 +127,15 @@ render_markdown.setup({
 })
 
 -- Set up keymaps for toggling rendering
-vim.keymap.set("n", "<leader>mr", function()
+vim.keymap.set('n', '<leader>mr', function()
   render_markdown.toggle()
-end, { desc = "[M]arkdown [R]ender toggle" })
+end, { desc = '[M]arkdown [R]ender toggle' })
 
 -- Optional additional keymaps for specific functions
-vim.keymap.set("n", "<leader>me", function()
+vim.keymap.set('n', '<leader>me', function()
   render_markdown.expand()
-end, { desc = "[M]arkdown [E]xpand anti-conceal margin" })
+end, { desc = '[M]arkdown [E]xpand anti-conceal margin' })
 
-vim.keymap.set("n", "<leader>mc", function()
+vim.keymap.set('n', '<leader>mc', function()
   render_markdown.contract()
-end, { desc = "[M]arkdown [C]ontract anti-conceal margin" })
+end, { desc = '[M]arkdown [C]ontract anti-conceal margin' })

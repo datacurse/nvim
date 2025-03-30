@@ -34,7 +34,6 @@ require('lualine').setup({
   -- },
   extensions = {
     -- extensions change statusline for specified filetypes
-    "neo-tree"
-  }
+    'neo-tree',
+  },
 })
-
