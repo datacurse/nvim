@@ -33,7 +33,12 @@
     # This is for plugins that will load at startup without using packadd:
     startupPlugins = {
       general = with pkgs.vimPlugins; [
-        snacks-nvim
+        # snacks-nvim
+        (mkNvimPlugin "snacks.nvim" (builtins.fetchGit {
+        url = "https://github.com/folke/snacks.nvim";
+        # You can specify a specific commit or tag for reproducibility
+        # rev = "abc123..."; 
+      }))
         vim-sleuth
         mini-nvim
         nvim-lspconfig
