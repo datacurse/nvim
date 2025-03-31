@@ -41,6 +41,11 @@ render_markdown.setup({
   },
   callout = {},
   link = {
+    highlight = 'RenderMarkdownLink',
+    wiki = {
+      icon = '󰇈 ',
+      highlight = 'RenderMarkdownWikiLink',
+    },
     custom = {
       python = {
         pattern = '%.py$',
@@ -59,3 +64,10 @@ render_markdown.setup({
 vim.keymap.set('n', '<leader>mr', function()
   render_markdown.toggle()
 end, { desc = '[M]arkdown [R]ender toggle' })
+
+local C = require('catppuccin.palettes').get_palette()
+vim.api.nvim_set_hl(0, '@markup.quote', { fg = C.text, bold = false })
+vim.api.nvim_set_hl(0, '@markup.link.label', { fg = C.lavender, bold = false })
+vim.api.nvim_set_hl(0, '@markup.link.url', { fg = C.lavender, bold = false })
+vim.api.nvim_set_hl(0, 'RenderMarkdownLink', { fg = C.lavender, bold = false })
+vim.api.nvim_set_hl(0, 'RenderMarkdownWikiLink', { fg = C.lavender, bold = false })
