@@ -33,6 +33,7 @@
     # This is for plugins that will load at startup without using packadd:
     startupPlugins = {
       general = with pkgs.vimPlugins; [
+        lazy-nvim # required for dashboard in snacks
         snacks-nvim
         # (mkNvimPlugin "snacks.nvim" (builtins.fetchGit {
         #   url = "https://github.com/folke/snacks.nvim";
@@ -74,7 +75,7 @@
       settings = {
         aliases = [ "n" ];
         wrapRc = false;
-        unwrappedCfgPath = "/home/loki/.config/nixCats-nvim";
+        unwrappedCfgPath = "/home/loki/.config/nvim";
       };
       categories = {
         general = true;
