@@ -59,6 +59,7 @@ render_markdown.setup({
   },
   sign = { enabled = false },
   indent = { enabled = false },
+  latex = { enabled = false },
 })
 
 vim.keymap.set('n', '<leader>mr', function()
