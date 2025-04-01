@@ -218,4 +218,3 @@ vim.keymap.set('n', '<leader>t', function()
     start_insert = true,
   })
 end, { desc = 'Toggle bottom terminal' })
-
