@@ -2,9 +2,26 @@ if not nixCats('general') then
   return
 end
 require('snacks').setup({
-  dashboard = {},
-  terminal = {},
+  dashboard = {
+    sections = {
+      { section = 'header' },
+      { section = 'keys', gap = 1, padding = 1 },
+    },
+    header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+]],
+  },
+  gitbrowse = {},
+  input = {},
   lazygit = {},
+  terminal = {
+    shell = '/run/current-system/sw/bin/fish',
+  },
   explorer = {
     replace_netrw = true,
   },
@@ -48,8 +65,22 @@ require('snacks').setup({
       return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ''
     end,
   },
-  gitbrowse = {},
   scope = {},
+  styles = {
+    terminal = {
+      keys = {
+        term_normal = {
+          '<esc>',
+          function()
+            vim.cmd('stopinsert')
+          end,
+          mode = 't',
+          desc = 'Single escape to normal mode',
+        },
+      },
+    },
+  },
+  -- statuscolumn = {},
 })
 
 -- terminal
@@ -161,3 +192,30 @@ vim.api.nvim_create_autocmd('QuitPre', {
     end
   end,
 })
+
+-- Setup keymaps for gitbrowse
+vim.keymap.set('n', '<leader>go', function()
+  -- Open the current file in the repo browser
+  require('snacks').gitbrowse({
+    what = 'file', -- Open the current file
+    notify = true, -- Show notification on open
+  })
+end, { desc = 'Open file in Git browser' })
+
+vim.keymap.set('n', '<leader>gr', function()
+  -- Open the repo itself
+  require('snacks').gitbrowse({
+    what = 'repo', -- Open the repository root
+    notify = true, -- Show notification on open
+  })
+end, { desc = 'Open repo in Git browser' })
+
+vim.keymap.set('n', '<leader>t', function()
+  -- Toggle a bottom terminal
+  require('snacks').terminal.toggle(nil, {
+    position = 'bottom',
+    height = 0.3,
+    start_insert = true,
+  })
+end, { desc = 'Toggle bottom terminal' })
+

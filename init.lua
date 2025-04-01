@@ -6,6 +6,8 @@ vim.g.startuptime_exe_path = nixCats.packageBinPath
 
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.showmode = false
+vim.opt.cmdheight = 0  -- or 1 if you still want some space
 
 -- Set highlight on search
 vim.opt.hlsearch = true

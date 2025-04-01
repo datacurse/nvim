@@ -33,7 +33,6 @@
     # This is for plugins that will load at startup without using packadd:
     startupPlugins = {
       general = with pkgs.vimPlugins; [
-        lazy-nvim # required for dashboard in snacks
         snacks-nvim
         # (mkNvimPlugin "snacks.nvim" (builtins.fetchGit {
         #   url = "https://github.com/folke/snacks.nvim";
@@ -54,11 +53,10 @@
         nvim-dap
         nvim-dap-ui
         nvim-dap-virtual-text
-        # iceberg-vim
-        # nvim-web-devicons
         catppuccin-nvim
         # image-nvim
         render-markdown-nvim
+        noice-nvim
       ];
     };
     # not loaded automatically at startup.

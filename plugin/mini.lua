@@ -3,5 +3,5 @@ if not nixCats('general') then
 end
 
 require('mini.pairs').setup()
--- require('mini.icons').setup()
 require('mini.ai').setup()
+require('mini.surround').setup()

@@ -10,6 +10,7 @@ require('lualine').setup({
     theme = colorscheme,
     component_separators = '|',
     section_separators = '',
+    globalstatus = true,
   },
   -- sections = {
   --   lualine_a = {'mode'},
@@ -32,8 +33,4 @@ require('lualine').setup({
   --   lualine_z = { 'lsp_progress', },
   --   -- lualine_z = { 'tabs' }
   -- },
-  extensions = {
-    -- extensions change statusline for specified filetypes
-    'neo-tree',
-  },
 })
