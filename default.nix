@@ -28,7 +28,6 @@
             preview
             multirow;
         })
-        vale # to get rid of error on md save
       ];
     };
     # This is for plugins that will load at startup without using packadd:
@@ -58,6 +57,7 @@
         # image-nvim
         render-markdown-nvim
         noice-nvim
+        wrapping-nvim
       ];
     };
     # not loaded automatically at startup.

@@ -20,7 +20,6 @@
 
 ##### Keymaps
 
-- [ ] add keybind to save on `ctrl+s`
 - [ ] add keybinds to work with checklists better
 
 ###### Meta
@@ -31,5 +30,7 @@
 
 # Archive
 
+- [x] add keybind to exit nvim on `ctrl+e`
+- [x] add keybind to save on `ctrl+s`
 - [x] (Bugs) fix markdown error on save
 - [x] (Meta) split notes in nvim into todo/plugins/fixes

@@ -122,3 +122,13 @@ vim.keymap.set("x", "<leader>P", '"_dP', { noremap = true, silent = true, desc =
 
 -- Select
 vim.keymap.set({"n", "v", "i"}, "<C-a>", "<Esc>ggVG", { desc = 'Select All' })
+
+-- Save file with Ctrl+S (in normal, insert, and visual modes)
+vim.keymap.set({"n", "i", "v"}, "<C-s>", "<cmd>w<CR>", { desc = 'Save file', noremap = true, silent = true })
+-- Make Ctrl+S in insert mode return to normal mode after saving
+vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = 'Save file and exit insert mode', noremap = true, silent = true })
+
+-- Exit Vim with Ctrl+E
+vim.keymap.set({"n", "i", "v"}, "<C-e>", "<cmd>q<CR>", { desc = 'Exit Vim', noremap = true, silent = true })
+-- Make Ctrl+E in insert mode return to normal mode before quitting
+vim.keymap.set("i", "<C-e>", "<Esc><cmd>q<CR>", { desc = 'Exit insert mode and quit Vim', noremap = true, silent = true })
