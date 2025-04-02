@@ -143,12 +143,12 @@ vim.keymap.set(
   { desc = 'Save file and exit insert mode', noremap = true, silent = true }
 )
 
--- Exit Vim with Ctrl+E
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-e>', '<cmd>q<CR>', { desc = 'Exit Vim', noremap = true, silent = true })
--- Make Ctrl+E in insert mode return to normal mode before quitting
-vim.keymap.set(
-  'i',
-  '<C-e>',
-  '<Esc><cmd>q<CR>',
-  { desc = 'Exit insert mode and quit Vim', noremap = true, silent = true }
-)
+-- -- Exit Vim with Ctrl+E
+-- vim.keymap.set({ 'n', 'i', 'v' }, '<leader>e', '<cmd>q<CR>', { desc = 'Exit Vim', noremap = true, silent = true })
+-- -- Make Ctrl+E in insert mode return to normal mode before quitting
+-- vim.keymap.set(
+--   'i',
+--   '<leader>e',
+--   '<Esc><cmd>q<CR>',
+--   { desc = 'Exit insert mode and quit Vim', noremap = true, silent = true }
+-- )

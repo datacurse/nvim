@@ -37,7 +37,7 @@ require('catppuccin').setup({
     },
     render_markdown = true,
     snacks = {
-      enabled = false,
+      enabled = true,
     },
     treesitter = true,
     which_key = true,
