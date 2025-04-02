@@ -8,6 +8,9 @@ conform.setup({
     python = { 'isort', 'black' },
     nix = { 'nixfmt' },
   },
+  format_on_save = {
+    timeout_ms = 500,
+  },
   formatters = {
     -- Configure formatters to use buffer-local indent settings
     stylua = {
@@ -41,6 +44,7 @@ conform.setup({
     },
   },
 })
+
 vim.keymap.set({ 'n', 'v' }, '<leader>FF', function()
   conform.format({
     lsp_fallback = true,

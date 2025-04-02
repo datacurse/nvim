@@ -7,7 +7,7 @@ vim.g.startuptime_exe_path = nixCats.packageBinPath
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.showmode = false
-vim.opt.cmdheight = 0  -- or 1 if you still want some space
+vim.opt.cmdheight = 0 -- or 1 if you still want some space
 
 -- Set highlight on search
 vim.opt.hlsearch = true
@@ -36,18 +36,18 @@ vim.o.smartindent = true
 vim.o.autoindent = true
 
 -- File-specific indentation settings
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"python"},
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'python' },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.softtabstop = 4
     vim.opt_local.shiftwidth = 4
   end,
-  desc = "Set Python-specific indent to 4 spaces",
+  desc = 'Set Python-specific indent to 4 spaces',
 })
 
 -- stops line wrapping from being confusing
-vim.o.breakindent = true
+-- vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
@@ -70,14 +70,14 @@ vim.o.completeopt = 'menu,preview,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.g.netrw_liststyle=0
-vim.g.netrw_banner=0
+vim.g.netrw_liststyle = 0
+vim.g.netrw_banner = 0
 -- [[ Disable auto comment on enter ]]
 -- See :help formatoptions
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "remove formatoptions",
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'remove formatoptions',
   callback = function()
-    vim.opt.formatoptions:remove({ "c", "r", "o" })
+    vim.opt.formatoptions:remove({ 'c', 'r', 'o' })
   end,
 })
 -- [[ Highlight on yank ]]
@@ -93,42 +93,62 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Moves Line Down' })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Moves Line Up' })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = 'Scroll Down' })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Scroll Up' })
-vim.keymap.set("n", "n", "nzzzv", { desc = 'Next Search Result' })
-vim.keymap.set("n", "N", "Nzzzv", { desc = 'Previous Search Result' })
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { desc = 'Moves Line Down' })
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { desc = 'Moves Line Up' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll Down' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll Up' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next Search Result' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous Search Result' })
 
 -- Keymaps for working with buffer
-vim.keymap.set("n", "<leader><leader>[", "<cmd>bprev<CR>", { desc = 'Previous buffer' })
-vim.keymap.set("n", "<leader><leader>]", "<cmd>bnext<CR>", { desc = 'Next buffer' })
-vim.keymap.set("n", "<leader><leader>l", "<cmd>b#<CR>", { desc = 'Last buffer' })
-vim.keymap.set("n", "<leader><leader>d", "<cmd>bdelete<CR>", { desc = 'delete buffer' })
+vim.keymap.set('n', '<leader><leader>[', '<cmd>bprev<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader><leader>]', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<leader><leader>l', '<cmd>b#<CR>', { desc = 'Last buffer' })
+vim.keymap.set('n', '<leader><leader>d', '<cmd>bdelete<CR>', { desc = 'delete buffer' })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
+vim.keymap.set('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', { expr = true, silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader><leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Copy Paste
-vim.keymap.set({"v", "x", "n"}, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
-vim.keymap.set({'n', 'v', 'x'}, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
-vim.keymap.set('i', '<C-p>', '<C-r><C-p>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
-vim.keymap.set("x", "<leader>P", '"_dP', { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+vim.keymap.set({ 'v', 'x', 'n' }, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
+vim.keymap.set(
+  'i',
+  '<C-p>',
+  '<C-r><C-p>+',
+  { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' }
+)
+vim.keymap.set(
+  'x',
+  '<leader>P',
+  '"_dP',
+  { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' }
+)
 
 -- Select
-vim.keymap.set({"n", "v", "i"}, "<C-a>", "<Esc>ggVG", { desc = 'Select All' })
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-a>', '<Esc>ggVG', { desc = 'Select All' })
 
 -- Save file with Ctrl+S (in normal, insert, and visual modes)
-vim.keymap.set({"n", "i", "v"}, "<C-s>", "<cmd>w<CR>", { desc = 'Save file', noremap = true, silent = true })
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<cmd>w<CR>', { desc = 'Save file', noremap = true, silent = true })
 -- Make Ctrl+S in insert mode return to normal mode after saving
-vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = 'Save file and exit insert mode', noremap = true, silent = true })
+vim.keymap.set(
+  'i',
+  '<C-s>',
+  '<Esc><cmd>w<CR>',
+  { desc = 'Save file and exit insert mode', noremap = true, silent = true }
+)
 
 -- Exit Vim with Ctrl+E
-vim.keymap.set({"n", "i", "v"}, "<C-e>", "<cmd>q<CR>", { desc = 'Exit Vim', noremap = true, silent = true })
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-e>', '<cmd>q<CR>', { desc = 'Exit Vim', noremap = true, silent = true })
 -- Make Ctrl+E in insert mode return to normal mode before quitting
-vim.keymap.set("i", "<C-e>", "<Esc><cmd>q<CR>", { desc = 'Exit insert mode and quit Vim', noremap = true, silent = true })
+vim.keymap.set(
+  'i',
+  '<C-e>',
+  '<Esc><cmd>q<CR>',
+  { desc = 'Exit insert mode and quit Vim', noremap = true, silent = true }
+)

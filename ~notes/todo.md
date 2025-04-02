@@ -7,7 +7,6 @@
 
 ### Style
 
-- [ ] add 80 width limit to markdown
 - [ ] add format on save
 - [ ] remove annoying line on explorer
 - [ ] use numbered lists or something else instead of headers
@@ -30,7 +29,8 @@
 
 # Archive
 
-- [x] add keybind to exit nvim on `ctrl+e`
-- [x] add keybind to save on `ctrl+s`
+- [x] (Style) add 80 width limit to markdown
+- [x] (Keymaps) add keybind to exit nvim on `ctrl+e`
+- [x] (Keymaps) add keybind to save on `ctrl+s`
 - [x] (Bugs) fix markdown error on save
 - [x] (Meta) split notes in nvim into todo/plugins/fixes
