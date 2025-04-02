@@ -12,11 +12,11 @@
 - [ ] make `code` styled better, with rounding, padding and border
 - [ ] iterate on lualine
 - [ ] add new checkpoint to denote undone tasks
-- [ ] add new checkpoint to denote abandoned tasks
+- [ ] add new checkpoint to denote 
 
 #### Plugins
 
-- [ ] add plugin to `ctrl+v` images from buffer into file
+- [ ] add [vimwiki](https://github.com/vimwiki/vimwiki)
 
 ##### Keymaps
 
@@ -30,6 +30,7 @@
 
 # Archive
 
+- [x] (plugins) add img-clip
 - [x] (Style) enabled catppuccin for notification
 - [x] (Style) add format on save
 - [x] (Style) add 80 width limit to markdown
