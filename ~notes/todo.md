@@ -18,6 +18,7 @@
 
 - [ ] add [vimwiki](https://github.com/vimwiki/vimwiki)
 - [ ] add [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim?tab=readme-ov-file)
+- [ ] compare mkdnflow and [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
 
 ##### Keymaps
 
@@ -31,11 +32,12 @@
 
 # Archive
 
+- [x] (style) made latex / math white
 - [x] (plugins) add img-clip
-- [x] (Style) enabled catppuccin for notification
-- [x] (Style) add format on save
-- [x] (Style) add 80 width limit to markdown
-- [-] (Keymaps) add keybind to exit nvim on `ctrl+e`
-- [x] (Keymaps) add keybind to save on `ctrl+s`
-- [x] (Bugs) fix markdown error on save
-- [x] (Meta) split notes in nvim into todo/plugins/fixes
+- [x] (style) enabled catppuccin for notification
+- [x] (style) add format on save
+- [x] (style) add 80 width limit to markdown
+- [-] (keymaps) add keybind to exit nvim on `ctrl+e`
+- [x] (keymaps) add keybind to save on `ctrl+s`
+- [x] (bugs) fix markdown error on save
+- [x] (meta) split notes in nvim into todo/plugins/fixes
