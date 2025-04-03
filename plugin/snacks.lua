@@ -49,7 +49,22 @@ require('snacks').setup({
     },
   },
   rename = {},
-  notifier = {},
+  notifier = {
+    filter = function(notif)
+      -- Filter out all file save notifications
+      if
+        type(notif.msg) == 'string'
+        and (
+          notif.msg:match('written')
+          or notif.msg:match('lines') and notif.msg:match('written')
+          or notif.msg:match('L') and notif.msg:match('B') and notif.msg:match('written')
+        )
+      then
+        return false
+      end
+      return true
+    end,
+  },
   indent = {
     animate = { enabled = false },
     filter = function(buf)

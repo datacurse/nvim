@@ -19,6 +19,7 @@
 - [ ] add [vimwiki](https://github.com/vimwiki/vimwiki)
 - [ ] add [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim?tab=readme-ov-file)
 - [ ] compare mkdnflow and [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
+- [ ] find some app that can edit png with transparend bg
 
 ##### Keymaps
 
