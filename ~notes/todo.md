@@ -17,8 +17,10 @@
 #### Plugins
 
 - [ ] add [vimwiki](https://github.com/vimwiki/vimwiki)
-- [ ] add [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim?tab=readme-ov-file)
-- [ ] compare mkdnflow and [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
+- [ ] add
+  [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim?tab=readme-ov-file)
+- [ ] compare mkdnflow and
+  [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
 - [ ] find some app that can edit png with transparend bg
 
 ##### Keymaps
@@ -33,6 +35,8 @@
 
 # Archive
 
+- [x] (style) filtering out and not showing notification messages on file save
+  lol hahaha
 - [x] (style) made latex / math white
 - [x] (plugins) add img-clip
 - [x] (style) enabled catppuccin for notification
