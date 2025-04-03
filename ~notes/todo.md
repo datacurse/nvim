@@ -17,6 +17,7 @@
 #### Plugins
 
 - [ ] add [vimwiki](https://github.com/vimwiki/vimwiki)
+- [ ] add [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim?tab=readme-ov-file)
 
 ##### Keymaps
 

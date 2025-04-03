@@ -16,7 +16,7 @@ require('wrapping').setup({
   },
   softener = { markdown = 1.2 },
   create_commands = true,
-  notify_on_switch = true,
+  notify_on_switch = false,
   hard_wrap_column = 80,
 })
 
