@@ -27,5 +27,10 @@ deletion
 - `sd(` delete just "surrounding parentheses"
 - `da(` delete entire text with parentheses
 
+replace
+- `sr)]` replace one kind of brackets with another
 
+surrounding
+- `saiW(` surround word with space between brackets
+- `saiW)` surround word without space between brackets
 
