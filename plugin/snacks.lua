@@ -35,6 +35,24 @@ require('snacks').setup({
         },
       },
     },
+    actions = {
+      open_in_nautilus = function(_, item)
+        if item and item.file then
+          local file_path = item.file
+          vim.fn.jobstart({ 'nautilus', file_path }, {
+            detach = true,
+          })
+          -- vim.notify('Opening in Nautilus: ' .. file_path, vim.log.levels.INFO)
+        end
+      end,
+    },
+    win = {
+      list = {
+        keys = {
+          ['f'] = 'open_in_nautilus',
+        },
+      },
+    },
   },
   bigfile = {},
   image = {
@@ -43,7 +61,7 @@ require('snacks').setup({
       enabled = true,
       inline = true,
       float = true,
-      conceal = function(lang, type)
+      conceal = function()
         return false
       end,
     },

@@ -54,10 +54,8 @@
         nvim-dap-ui
         nvim-dap-virtual-text
         catppuccin-nvim
-        # image-nvim
         render-markdown-nvim
         noice-nvim
-        wrapping-nvim
         img-clip-nvim
       ];
     };

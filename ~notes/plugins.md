@@ -32,5 +32,10 @@ replace
 
 surrounding
 - `saiW(` surround word with space between brackets
-- `saiW)` surround word without space between brackets
+- `saiW)` surround word without space between brackets arst arst arst arst arst
+  arst 
 
+# wrapping
+
+- `<leader>wt` to toggle hard/soft mode
+- `<C-a>gq` to use hardline
