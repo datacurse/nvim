@@ -57,6 +57,7 @@
         render-markdown-nvim
         noice-nvim
         img-clip-nvim
+        grug-far-nvim
       ];
     };
     # not loaded automatically at startup.

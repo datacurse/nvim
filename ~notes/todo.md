@@ -6,8 +6,6 @@
 
 ### Style
 
-- [ ] make better line wrapping, hardline should be always active, look up if
-  there is a way to hardcode it
 - [ ] remove annoying line on explorer
 - [ ] use numbered lists or something else instead of headers
 - [ ] make `code` styled better, with rounding, padding and border
@@ -36,6 +34,8 @@
 
 # Archive
 
+- [x] (style) make better line wrapping, hardline should be always active, look
+  up if there is a way to hardcode it
 - [x] (style) filtering out and not showing notification messages on file save
   lol hahaha
 - [x] (style) made latex / math white

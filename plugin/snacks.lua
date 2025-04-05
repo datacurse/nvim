@@ -33,6 +33,8 @@ require('snacks').setup({
             width = 24,
           },
         },
+        ignored = false,
+        hidden = false,
       },
     },
     actions = {
@@ -114,6 +116,21 @@ require('snacks').setup({
     },
   },
   -- statuscolumn = {},
+  -- scroll = {
+  --   animate = {
+  --     duration = { step = 15, total = 250 },
+  --     easing = 'linear',
+  --   },
+  --   animate_repeat = {
+  --     delay = 100, -- delay in ms before using the repeat animation
+  --     duration = { step = 5, total = 50 },
+  --     easing = 'linear',
+  --   },
+  --   filter = function(buf)
+  --     -- Skip scrolling for terminals as mentioned in your existing config pattern
+  --     return vim.g.snacks_scroll ~= false and vim.b[buf].snacks_scroll ~= false and vim.bo[buf].buftype ~= 'terminal'
+  --   end,
+  -- },
 })
 
 -- terminal
@@ -243,7 +260,7 @@ vim.keymap.set('n', '<leader>gr', function()
   })
 end, { desc = 'Open repo in Git browser' })
 
-vim.keymap.set('n', '<leader>t', function()
+vim.keymap.set('n', '<leader>tt', function()
   -- Toggle a bottom terminal
   require('snacks').terminal.toggle(nil, {
     position = 'bottom',
@@ -251,3 +268,15 @@ vim.keymap.set('n', '<leader>t', function()
     start_insert = true,
   })
 end, { desc = 'Toggle bottom terminal' })
+
+-- Optional: Add a keymap to toggle smooth scrolling
+vim.keymap.set('n', '<leader>ts', function()
+  -- Check if it's enabled by looking at the global variable
+  if vim.g.snacks_scroll == false then
+    Snacks.scroll.enable()
+    vim.notify('Smooth scrolling enabled', vim.log.levels.INFO)
+  else
+    Snacks.scroll.disable()
+    vim.notify('Smooth scrolling disabled', vim.log.levels.INFO)
+  end
+end, { desc = 'Toggle smooth scrolling' })

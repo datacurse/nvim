@@ -10,7 +10,7 @@ render_markdown.setup({
     render_modes = true,
     icons = { '󰬺  ', '󰬻  ', '󰬼  ', '󰬽  ', '󰬾  ', '󰬿  ' },
     position = 'inline',
-    backgrounds = {},
+    -- backgrounds = {},
   },
   checkbox = {
     unchecked = { icon = '󰄱 ' },
