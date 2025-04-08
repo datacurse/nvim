@@ -67,6 +67,13 @@ require('snacks').setup({
         return false
       end,
     },
+    convert = {
+      notify = true,
+      mermaid = function()
+        local theme = vim.o.background == 'light' and 'neutral' or 'dark'
+        return { '-i', '{src}', '-o', '{file}', '-b', 'transparent', '-t', theme, '-s', '{scale}' }
+      end,
+    },
   },
   rename = {},
   notifier = {

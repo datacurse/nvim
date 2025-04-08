@@ -6,6 +6,7 @@
 
 ### Style
 
+- [ ] make glyphs fork ->
 - [ ] remove annoying line on explorer
 - [ ] use numbered lists or something else instead of headers
 - [ ] make `code` styled better, with rounding, padding and border
