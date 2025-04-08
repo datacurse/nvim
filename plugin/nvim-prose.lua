@@ -10,7 +10,7 @@ prose.setup({
   filetypes = { 'markdown', 'asciidoc', 'text', 'tex' }, -- Supported filetypes
   placeholders = {
     words = 'words',
-    minutes = 'min',
+    -- minutes = 'min',
   },
 })
 
