@@ -33,6 +33,7 @@
 
 # Archive
 
+- [x] (style) down show dotted spacebars for markdown
 - [x] (style) added word count to lualine, added filename and removed unix
 - [x] (style) make better line wrapping, hardline should be always active, look
   up if there is a way to hardcode it

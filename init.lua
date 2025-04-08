@@ -52,6 +52,14 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Set Python-specific indent to 4 spaces',
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    -- Disable 'list' option for markdown files to hide whitespace characters
+    vim.opt_local.list = false
+  end,
+})
+
 -- stops line wrapping from being confusing
 -- vim.o.breakindent = true
 
