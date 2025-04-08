@@ -9,7 +9,6 @@
 - [ ] remove annoying line on explorer
 - [ ] use numbered lists or something else instead of headers
 - [ ] make `code` styled better, with rounding, padding and border
-- [ ] iterate on lualine
 - [ ] add new checkpoint to denote undone tasks
 - [ ] add new checkpoint to denote 
 
@@ -34,6 +33,7 @@
 
 # Archive
 
+- [x] (style) added word count to lualine, added filename and removed unix
 - [x] (style) make better line wrapping, hardline should be always active, look
   up if there is a way to hardcode it
 - [x] (style) filtering out and not showing notification messages on file save
