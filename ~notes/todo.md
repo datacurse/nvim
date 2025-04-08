@@ -1,11 +1,15 @@
 # Inbox
 
+- [ ] swab middle and far bottons on the split keyboard 
 
 ## Bugs
 
+- [ ] seems like img-clip does not work
+- [ ] some funky stuff with origin in git
 
 ### Style
 
+- [ ] add autocompletion for paths in markdown
 - [ ] make glyphs fork ->
 - [ ] remove annoying line on explorer
 - [ ] use numbered lists or something else instead of headers

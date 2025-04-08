@@ -66,6 +66,7 @@ require('snacks').setup({
       conceal = function()
         return false
       end,
+      max_height = 20,
     },
     convert = {
       notify = true,
