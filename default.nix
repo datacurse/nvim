@@ -58,12 +58,13 @@
         noice-nvim
         img-clip-nvim
         grug-far-nvim
-        # Add nvim-prose using mkNvimPlugin
-        (mkNvimPlugin "nvim-prose" (builtins.fetchGit {
-          url = "https://github.com/skwee357/nvim-prose";
-          # Use the latest commit hash from the repository
-          rev = "38aac8c5a25533c9e2b8dde4d5d1d3f60ded21ad"; 
-        }))
+# Add nvim-prose using mkNvimPlugin and fetchFromGitHub
+    # (mkNvimPlugin "nvim-prose" (pkgs.fetchFromGitHub {
+    #   owner = "skwee357";
+    #   repo = "nvim-prose";
+    #   rev = "38aac8c9c94a5725d152bdfea374d60e07fb93d6";
+    #   sha256 = pkgs.lib.fakeSha256; # Will fail and show correct hash to use
+    # }))
       ];
     };
     # not loaded automatically at startup.
