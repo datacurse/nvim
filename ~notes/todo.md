@@ -9,6 +9,7 @@
 
 ### Style
 
+- [ ] when pressing enter on - make new - on next line
 - [ ] add autocompletion for paths in markdown
 - [ ] make glyphs fork ->
 - [ ] remove annoying line on explorer
@@ -53,3 +54,5 @@
 - [x] (keymaps) add keybind to save on `ctrl+s`
 - [x] (bugs) fix markdown error on save
 - [x] (meta) split notes in nvim into todo/plugins/fixes
+
+![](../../../Pictures/darth-vader.jpg)

@@ -10,6 +10,7 @@ local servers = vim.defaulttable()
 -- most don't need much configuration
 -- servers.gopls = {}
 -- servers.html = {}
+servers.pyright = {}
 
 -- but you can provide some if you want to!
 servers.lua_ls.settings.Lua = {

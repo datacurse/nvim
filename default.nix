@@ -28,6 +28,9 @@
             preview
             multirow;
         })
+        black
+        python3Packages.isort
+        pyright
       ];
     };
     # This is for plugins that will load at startup without using packadd:
