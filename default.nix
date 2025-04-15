@@ -61,6 +61,8 @@
         noice-nvim
         img-clip-nvim
         grug-far-nvim
+        autolist-nvim
+        
 # Add nvim-prose using mkNvimPlugin and fetchFromGitHub
     # (mkNvimPlugin "nvim-prose" (pkgs.fetchFromGitHub {
     #   owner = "skwee357";

@@ -18,6 +18,8 @@ render_markdown.setup({
     render_modes = true,
     icons = { '󰬺  ', '󰬻  ', '󰬼  ', '󰬽  ', '󰬾  ', '󰬿  ' },
     position = 'inline',
+    width = 'block',
+    min_width = 80,
     -- backgrounds = {},
   },
   checkbox = {

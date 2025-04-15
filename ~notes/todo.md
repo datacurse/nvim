@@ -9,7 +9,6 @@
 
 ### Style
 
-- [ ] when pressing enter on - make new - on next line
 - [ ] add autocompletion for paths in markdown
 - [ ] make glyphs fork ->
 - [ ] remove annoying line on explorer
@@ -39,6 +38,8 @@
 
 # Archive
 
+- [x] (plugins) when pressing enter on - make new - on next line
+- [x] (plugins) added mdx support for markdown-renderer
 - [x] (style) down show dotted spacebars for markdown
 - [x] (style) added word count to lualine, added filename and removed unix
 - [x] (style) make better line wrapping, hardline should be always active, look

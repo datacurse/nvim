@@ -166,3 +166,6 @@ vim.keymap.set(
 --   '<Esc><cmd>q<CR>',
 --   { desc = 'Exit insert mode and quit Vim', noremap = true, silent = true }
 -- )
+
+-- Remove [number] patterns
+vim.keymap.set('n', '<leader>m[', ':%s/\\[\\d\\+\\]//g<CR>', { noremap = true, silent = true })
