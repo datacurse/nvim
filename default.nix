@@ -31,6 +31,9 @@
         black
         python3Packages.isort
         pyright
+        # For typst preview
+        tinymist
+        websocat
       ];
     };
     # This is for plugins that will load at startup without using packadd:
@@ -62,7 +65,8 @@
         img-clip-nvim
         grug-far-nvim
         autolist-nvim
-        
+        typescript-tools-nvim
+        typst-preview-nvim
 # Add nvim-prose using mkNvimPlugin and fetchFromGitHub
     # (mkNvimPlugin "nvim-prose" (pkgs.fetchFromGitHub {
     #   owner = "skwee357";

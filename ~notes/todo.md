@@ -19,6 +19,8 @@
 
 #### Plugins
 
+- [ ] in blink, how to gd 
+- [ ] mini.pairs old version overwrites user CR, need to update it somehow
 - [ ] add [vimwiki](https://github.com/vimwiki/vimwiki)
 - [ ] add
   [mkdnflow](https://github.com/jakewvincent/mkdnflow.nvim?tab=readme-ov-file)
@@ -56,4 +58,3 @@
 - [x] (bugs) fix markdown error on save
 - [x] (meta) split notes in nvim into todo/plugins/fixes
 
-![](../../../Pictures/darth-vader.jpg)

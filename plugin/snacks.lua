@@ -1,6 +1,9 @@
 if not nixCats('general') then
   return
 end
+
+_G.snacks_conceal_math = false
+
 require('snacks').setup({
   dashboard = {
     sections = {
@@ -63,7 +66,10 @@ require('snacks').setup({
       enabled = true,
       inline = true,
       float = true,
-      conceal = function()
+      conceal = function(_, type)
+        -- if type == 'math' then
+        --   return true
+        -- end
         return false
       end,
       max_height = 20,

@@ -11,6 +11,16 @@ local servers = vim.defaulttable()
 -- servers.gopls = {}
 -- servers.html = {}
 servers.pyright = {}
+servers.tsserver = {}
+
+-- Typst / Tinymist -----------------------------------------------------------
+servers.tinymist = {
+  settings = {
+    formatterMode = 'typstyle', -- or "typstfmt"
+    exportPdf = 'onSave', -- "onType" if you prefer instant builds
+    semanticTokens = 'disable', -- Treesitter already handles syntax colours
+  },
+}
 
 -- but you can provide some if you want to!
 servers.lua_ls.settings.Lua = {
