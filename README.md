@@ -1,11 +1,8 @@
 # Simple
 
-This is approximately the most minimal configuration that can be called a fully-featured configuration,
-and is split up into multiple files for easy reading.
-(Of course, everyone has their own take on what minimal truly means...)
+This is approximately the most minimal configuration that can be called a fully-featured configuration, and is split up into multiple files for easy reading. (Of course, everyone has their own take on what minimal truly means...)
 
-Just like the [`flakeless`](../flakeless) template it is a nix expression that returns a derivation containing
-neovim plus your configuration that can be installed like any other package.
+Just like the [`flakeless`](../flakeless) template it is a nix expression that returns a derivation containing neovim plus your configuration that can be installed like any other package.
 
 This configuration does not make much use of the category system. Everything is in 1 single `general` category.
 

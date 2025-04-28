@@ -2,10 +2,6 @@ if not nixCats('general') then
   return
 end
 
-if not nixCats('general') then
-  return
-end
-
 -- Setup grug-far.nvim
 require('grug-far').setup({
   -- Default engine is 'ripgrep'

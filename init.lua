@@ -19,11 +19,11 @@ vim.opt.inccommand = 'split'
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Enable hard wrapping at 80 characters
-vim.o.textwidth = 80
-vim.opt.formatoptions:append('t')
+-- Soft wrapping
 vim.o.wrap = true
--- vim.o.colorcolumn = '80'
+vim.o.linebreak = true
+vim.o.showbreak = '↪ '
+vim.o.breakindent = true
 
 -- Make line numbers default
 vim.wo.number = true

@@ -40,10 +40,6 @@
     startupPlugins = {
       general = with pkgs.vimPlugins; [
         snacks-nvim
-        # (mkNvimPlugin "snacks.nvim" (builtins.fetchGit {
-        #   url = "https://github.com/folke/snacks.nvim";
-        #   rev = "bc0630e43be5699bb94dadc302c0d21615421d93"; 
-        # }))
         vim-sleuth
         mini-nvim
         nvim-lspconfig
@@ -67,13 +63,10 @@
         autolist-nvim
         typescript-tools-nvim
         typst-preview-nvim
-# Add nvim-prose using mkNvimPlugin and fetchFromGitHub
-    # (mkNvimPlugin "nvim-prose" (pkgs.fetchFromGitHub {
-    #   owner = "skwee357";
-    #   repo = "nvim-prose";
-    #   rev = "38aac8c9c94a5725d152bdfea374d60e07fb93d6";
-    #   sha256 = pkgs.lib.fakeSha256; # Will fail and show correct hash to use
-    # }))
+        (mkNvimPlugin (builtins.fetchGit {
+          url = "https://github.com/rickhowe/wrapwidth";
+          rev = "c592b47c6665e004f508b8ca01ec1fcf07493cbe";
+        }) "wrapwidth")
       ];
     };
     # not loaded automatically at startup.
