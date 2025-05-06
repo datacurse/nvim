@@ -31,6 +31,8 @@
 ##### Keymaps
 
 - [ ] add keybinds to work with checklists better
+- [ ] when go to defenition, center screen
+- [ ] right now when i try to paste text with `<leader>p` it tries to paste image. I need a different shortcut for pasting images.
 
 ###### Meta
 
@@ -40,6 +42,7 @@
 
 # Archive
 
+- [x] (plugins) markdownrenderer, now quotes work just ok with softwrap mode. https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/419#issuecomment-2855431212
 - [x] (plugins) when pressing enter on - make new - on next line
 - [x] (plugins) added mdx support for markdown-renderer
 - [x] (style) down show dotted spacebars for markdown

@@ -22,11 +22,20 @@ vim.opt.scrolloff = 10
 -- Soft wrapping
 vim.o.wrap = true
 vim.o.linebreak = true
-vim.o.showbreak = '↪ '
+-- vim.o.showbreak = '↪ '
 vim.o.breakindent = true
 
 -- Make line numbers default
 vim.wo.number = true
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'markdown', 'mdx', 'text' },
+  callback = function()
+    -- Disable line numbers for these file types
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+  end,
+  desc = 'Disable line numbers for markdown, MDX, and text files',
+})
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -156,6 +165,13 @@ vim.keymap.set(
   '<Esc><cmd>w<CR>',
   { desc = 'Save file and exit insert mode', noremap = true, silent = true }
 )
+
+-- Unmap Ctrl+Q from Visual Block mode first
+vim.keymap.set({ 'n', 'i', 'v' }, '<C-q>', '<Nop>', { noremap = true })
+
+-- Now map Ctrl+Q to quit Neovim in all modes
+vim.keymap.set({ 'n', 'v' }, '<C-q>', ':qa<CR>', { noremap = true })
+vim.keymap.set('i', '<C-q>', '<Esc>:qa<CR>', { noremap = true })
 
 -- -- Exit Vim with Ctrl+E
 -- vim.keymap.set({ 'n', 'i', 'v' }, '<leader>e', '<cmd>q<CR>', { desc = 'Exit Vim', noremap = true, silent = true })

@@ -28,6 +28,20 @@ render_markdown.setup({
     custom = { todo = { rendered = ' ' } },
   },
   quote = { repeat_linebreak = true },
+  win_options = {
+    showbreak = {
+      default = '',
+      rendered = '  ',
+    },
+    breakindent = {
+      default = false,
+      rendered = true,
+    },
+    breakindentopt = {
+      default = '',
+      rendered = '',
+    },
+  },
   pipe_table = {
     preset = 'round',
     alignment_indicator = '',
