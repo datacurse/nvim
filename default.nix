@@ -39,6 +39,12 @@
     # This is for plugins that will load at startup without using packadd:
     startupPlugins = {
       general = with pkgs.vimPlugins; [
+        # themes
+        catppuccin-nvim
+        zenbones-nvim
+        nightfox-nvim
+
+        # other stuff
         snacks-nvim
         vim-sleuth
         mini-nvim
@@ -55,7 +61,6 @@
         nvim-dap
         nvim-dap-ui
         nvim-dap-virtual-text
-        catppuccin-nvim
         render-markdown-nvim
         noice-nvim
         img-clip-nvim
