@@ -1,21 +1,18 @@
 # Inbox
 
-- [ ] swab middle and far bottons on the split keyboard 
-
 ## Bugs
 
 - [ ] seems like img-clip does not work
-- [ ] some funky stuff with origin in git
 
 ### Style
 
 - [ ] add autocompletion for paths in markdown
-- [ ] make glyphs fork ->
 - [ ] remove annoying line on explorer
-- [ ] use numbered lists or something else instead of headers
 - [ ] make `code` styled better, with rounding, padding and border
-- [ ] add new checkpoint to denote undone tasks
-- [ ] add new checkpoint to denote 
+- [ ] add new checkpoint to denote dropped tasks
+- [ ] extend coloring of headers in markdown-renderer
+- [ ] add coloring to checkboxes in markdown-renderer
+- [ ] remove padding from the right side of explorer
 
 #### Plugins
 
@@ -27,12 +24,16 @@
 - [ ] compare mkdnflow and
   [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
 - [ ] find some app that can edit png with transparend bg
+- [x] implement that image height parameter myself for snacks.image
 
 ##### Keymaps
 
 - [ ] add keybinds to work with checklists better
 - [ ] when go to defenition, center screen
 - [ ] right now when i try to paste text with `<leader>p` it tries to paste image. I need a different shortcut for pasting images.
+- [ ] 
+![2025-05-08-13-19-06](../assets/2025-05-08-13-19-06.png)
+annoying thing at the top left corner when scrolling documents with smooth scroll.
 
 ###### Meta
 
@@ -42,6 +43,10 @@
 
 # Archive
 
+- [ ] use numbered lists or something else instead of headers
+- [x] (bugs) some funky stuff with origin in git
+- [x] (font) make glyphs fork ->
+- [x] (keymaps) added smoothscroll, now scrolling with smoothwrap wont sent me to the moon
 - [x] (plugins) markdownrenderer, now quotes work just ok with softwrap mode. https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/419#issuecomment-2855431212
 - [x] (plugins) when pressing enter on - make new - on next line
 - [x] (plugins) added mdx support for markdown-renderer

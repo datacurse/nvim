@@ -2,7 +2,7 @@ if not nixCats('general') then
   return
 end
 
-local colorscheme = 'catppuccin'
+local colorscheme = 'zenbones'
 local prose = require('nvim-prose')
 
 require('lualine').setup({

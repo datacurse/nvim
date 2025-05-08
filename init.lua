@@ -24,6 +24,7 @@ vim.o.wrap = true
 vim.o.linebreak = true
 -- vim.o.showbreak = '↪ '
 vim.o.breakindent = true
+vim.opt.smoothscroll = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -130,8 +131,12 @@ vim.keymap.set('n', '<leader><leader>l', '<cmd>b#<CR>', { desc = 'Last buffer' }
 vim.keymap.set('n', '<leader><leader>d', '<cmd>bdelete<CR>', { desc = 'delete buffer' })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'', { expr = true, silent = true })
-vim.keymap.set('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'', { expr = true, silent = true })
+-- Better navigation with wrapped lines
+vim.keymap.set('n', 'j', 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
+vim.keymap.set('n', 'k', 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
+vim.keymap.set('n', '0', 'v:count == 0 ? "g0" : "0"', { expr = true, silent = true })
+vim.keymap.set('n', '^', 'v:count == 0 ? "g^" : "^"', { expr = true, silent = true })
+vim.keymap.set('n', '$', 'v:count == 0 ? "g$" : "$"', { expr = true, silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader><leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })

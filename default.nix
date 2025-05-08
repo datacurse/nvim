@@ -42,6 +42,7 @@
         # themes
         catppuccin-nvim
         zenbones-nvim
+        lush-nvim
         nightfox-nvim
 
         # other stuff
