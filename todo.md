@@ -1,10 +1,10 @@
-# Inbox
+# Todo
 
 ## Bugs
 
 - [ ] seems like img-clip does not work
 
-### Style
+## Style
 
 - [ ] add autocompletion for paths in markdown
 - [ ] remove annoying line on explorer
@@ -14,7 +14,7 @@
 - [ ] add coloring to checkboxes in markdown-renderer
 - [ ] remove padding from the right side of explorer
 
-#### Plugins
+## Plugins
 
 - [ ] in blink, how to gd 
 - [ ] mini.pairs old version overwrites user CR, need to update it somehow
@@ -26,23 +26,27 @@
 - [ ] find some app that can edit png with transparend bg
 - [x] implement that image height parameter myself for snacks.image
 
-##### Keymaps
+## Keymaps
 
+- [ ] add keybinds to swap side of explorer
 - [ ] add keybinds to work with checklists better
 - [ ] when go to defenition, center screen
 - [ ] right now when i try to paste text with `<leader>p` it tries to paste image. I need a different shortcut for pasting images.
-- [ ] 
+- [ ]
 ![2025-05-08-13-19-06](../assets/2025-05-08-13-19-06.png)
 annoying thing at the top left corner when scrolling documents with smooth scroll.
 
-###### Meta
+## Meta
 
 - [ ] add info about how i solved annoying padding
 - [ ] add info about how i solved small icons
 - [ ] automatically archive checkboxed entries
 
-# Archive
+## Archive
 
+- [x] keep only todo, remove fixes and plugins (add them at the end of todo)
+- [x] (keymaps) on pressing `~` it changes register but doesnt move to the next character.
+- [x] (keymaps) when pressing < or > in selection mode, remain in it
 - [ ] use numbered lists or something else instead of headers
 - [x] (bugs) some funky stuff with origin in git
 - [x] (font) make glyphs fork ->
@@ -66,3 +70,65 @@ annoying thing at the top left corner when scrolling documents with smooth scrol
 - [x] (bugs) fix markdown error on save
 - [x] (meta) split notes in nvim into todo/plugins/fixes
 
+# Fixes
+
+## hide default status line in favour of lualine
+
+[reddit](https://www.reddit.com/r/neovim/comments/1gg478d/cant_figure_out_how_to_hide_default_status_line/)
+Settting `vim.opt.showmode` = false should make that go away.
+
+Technically, that won't get you any space back since the mode is being displayed in the command line area. If you really want that space back, you'd need noice.
+
+## ghostty padding
+
+[github](https://github.com/ghostty-org/ghostty/discussions/3716)
+
+```toml
+window-padding-balance = true
+window-padding-x = 0
+window-padding-y = 0
+window-padding-color = extend
+```
+This removes ugly padding around neovim.
+
+# Plugins
+
+## mini
+
+### ai
+
+- `a` around a textobject
+- `i` inside a textobject
+- `an/in` next textobject
+- `al/il` last textobject
+- `g[/g]` go to left/right edge of textobject
+
+### surround
+
+actions
+- `sa` add surrounding (in visual mode or on motion)
+- `sd` delete surrounding
+- `sr` replace surrounding
+- `sf` or `sF` find surrounding (move cursor right or left)
+- `sh` highlight surrounding
+
+selection
+- `veeesa'` select text in visual mode and then surround 
+- `saiW'` surround around entire word with dots
+
+deletion
+- `sd(` delete just "surrounding parentheses"
+- `da(` delete entire text with parentheses
+
+replace
+- `sr)]` replace one kind of brackets with another
+
+surrounding
+- `saiW(` surround word with space between brackets
+- `saiW)` surround word without space between brackets arst arst arst arst arst
+  arst 
+
+# wrapping
+
+- `<leader>wt` to toggle hard/soft mode
+- `<C-a>gq` to use hardline

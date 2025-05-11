@@ -1,19 +1,19 @@
 if not nixCats('general') then
   return
 end
-
 local conform = require('conform')
 conform.setup({
   formatters_by_ft = {
     lua = { 'stylua' },
     python = { 'isort', 'black' },
     nix = { 'nixfmt' },
+    typescript = { 'biome' },
+    typescriptreact = { 'biome' },
   },
   format_on_save = {
     timeout_ms = 500,
   },
   formatters = {
-    -- Configure formatters to use buffer-local indent settings
     stylua = {
       prepend_args = function()
         return {
@@ -45,7 +45,6 @@ conform.setup({
     },
   },
 })
-
 vim.keymap.set({ 'n', 'v' }, '<leader>FF', function()
   conform.format({
     lsp_fallback = true,

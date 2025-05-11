@@ -34,6 +34,7 @@
         # For typst preview
         tinymist
         websocat
+        # nodePackages.prettier
       ];
     };
     # This is for plugins that will load at startup without using packadd:

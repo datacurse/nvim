@@ -45,7 +45,7 @@ img_clip.setup({
 })
 
 -- Add keymappings
-vim.keymap.set('n', '<leader>p', function()
+vim.keymap.set('n', '<leader>ip', function()
   img_clip.paste_image()
 end, { desc = 'Paste image from clipboard' })
 

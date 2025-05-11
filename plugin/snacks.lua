@@ -33,7 +33,8 @@ require('snacks').setup({
       explorer = {
         layout = {
           layout = {
-            width = 24,
+            width = 36,
+            position = 'right',
           },
         },
         ignored = false,
@@ -282,15 +283,3 @@ vim.keymap.set('n', '<leader>tt', function()
     start_insert = true,
   })
 end, { desc = 'Toggle bottom terminal' })
-
--- Optional: Add a keymap to toggle smooth scrolling
-vim.keymap.set('n', '<leader>ts', function()
-  -- Check if it's enabled by looking at the global variable
-  if vim.g.snacks_scroll == false then
-    Snacks.scroll.enable()
-    vim.notify('Smooth scrolling enabled', vim.log.levels.INFO)
-  else
-    Snacks.scroll.disable()
-    vim.notify('Smooth scrolling disabled', vim.log.levels.INFO)
-  end
-end, { desc = 'Toggle smooth scrolling' })
