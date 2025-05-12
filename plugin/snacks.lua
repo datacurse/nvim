@@ -33,7 +33,7 @@ require('snacks').setup({
       explorer = {
         layout = {
           layout = {
-            width = 36,
+            width = 32,
             position = 'right',
           },
         },

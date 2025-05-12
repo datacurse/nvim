@@ -3,6 +3,7 @@
 ## Bugs
 
 - [ ] seems like img-clip does not work
+- [ ] When i open new file, it sometimes asks me what to do with swap file. Like, obviously restore it, i dont even want it to be asked from me and notifications to be shown.
 
 ## Style
 
@@ -24,7 +25,7 @@
 - [ ] compare mkdnflow and
   [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
 - [ ] find some app that can edit png with transparend bg
-- [x] implement that image height parameter myself for snacks.image
+- [ ] implement that image height parameter myself for snacks.image
 
 ## Keymaps
 
